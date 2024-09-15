@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Windows10",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/src/**",
+                "${workspaceFolder}/src/classes/**",
+                "${workspaceFolder}/build/_deps/sdl2-src/include",
+                "${workspaceFolder}/build/_deps/sdl_image-src",
+                "${workspaceFolder}/build/_deps/imgui-src",
+                "${workspaceFolder}/build/_deps/imgui-src/backends"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c23",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}

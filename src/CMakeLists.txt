@@ -6,18 +6,11 @@ add_executable(CrazyMaze)
 target_sources(${PROJECT_NAME}
     PRIVATE
         main.cpp
-        classes/Player.cpp
-        classes/Renderer.cpp
-        classes/Timer.cpp
-        classes/Wall.cpp
-        classes/Window.cpp
-        functions/KeysManager.cpp
 )
 
 target_include_directories(${PROJECT_NAME}
     PRIVATE
         classes
-        functions
 )
 
 target_link_libraries(${PROJECT_NAME}

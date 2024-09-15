@@ -25,14 +25,14 @@
 		{
 			"type": "shell",
 			"label": "Run Dev",
-			"command": "./build/bin/Debug/brain_blocks.exe",
+			"command": "./build/bin/Debug/crazy_maze.exe",
 			"group": "build",
 			"detail": "Run dev build"
 		},
 		{
 			"type": "shell",
 			"label": "Run Release",
-			"command": "./build/bin/Release/brain_blocks.exe",
+			"command": "./build/bin/Release/crazy_maze.exe",
 			"group": "build",
 			"detail": "Run release build"
 		}

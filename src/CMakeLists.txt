@@ -7,6 +7,7 @@ target_sources(${PROJECT_NAME}
     PRIVATE
         main.cpp
         classes/Renderer.cpp
+        classes/Timer.cpp
         classes/Window.cpp
 )
 

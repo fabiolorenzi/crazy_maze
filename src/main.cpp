@@ -1,6 +1,7 @@
 #define SDL_MAIN_HANDLED true
 
 #include <SDL.h>
+#include "classes/Timer.h"
 #include "classes/Window.h"
 
 int main()
@@ -8,13 +9,18 @@ int main()
     SDL_SetMainReady();
     bool isRunning = true;
     Window* window = new Window();
-    window->LoadMedia("assets/backgrounds/background_one.png");
+    Timer* timer = new Timer();
+
+    window->LoadTexture("assets/backgrounds/background_one.png");
 
     while (isRunning) {
+        timer->ResetStartLoop();
         window->RenderElements();
+        timer->BalanceFPS();
     }
 
     delete window;
+    delete timer;
 
     return 0;
 }

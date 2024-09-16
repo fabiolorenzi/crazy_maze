@@ -9,6 +9,7 @@ target_sources(${PROJECT_NAME}
         classes/Renderer.cpp
         classes/Timer.cpp
         classes/Window.cpp
+        functions/KeysManager.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

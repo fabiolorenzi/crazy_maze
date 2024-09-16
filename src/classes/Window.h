@@ -3,7 +3,6 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <iostream>
-#include <vector>
 #include "Renderer.h"
 
 class Window

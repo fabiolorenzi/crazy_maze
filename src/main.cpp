@@ -11,10 +11,18 @@ int main()
     Window* window = new Window();
     Timer* timer = new Timer();
 
-    window->LoadTexture("assets/backgrounds/background_one.png");
+    window->LoadMedia("assets/backgrounds/background_one.png");
 
     while (isRunning) {
         timer->ResetStartLoop();
+        SDL_Event e;
+
+        while (SDL_PollEvent(&e) != 0) {
+            if (e.type == SDL_QUIT) {
+                isRunning = false;
+            }
+        }
+
         window->RenderElements();
         timer->BalanceFPS();
     }

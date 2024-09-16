@@ -10,31 +10,41 @@ Window::Window()
 
 Window::~Window()
 {
-    delete gRenderer;
+	delete gRenderer;
     SDL_FreeSurface(gStretched);
-    gStretched = NULL;
-    SDL_DestroyWindow(gWindow);
-    gWindow = NULL;
-    SDL_Quit();
+	gStretched = NULL;
+	SDL_DestroyWindow(gWindow);
+	gWindow = NULL;
+	SDL_Quit();
 }
 
 int Window::Init()
 {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        return -1;
-    } else {
-        gWindow = SDL_CreateWindow("CrazyMaze", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
-        if (gWindow == NULL) {
-            printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-            return -1;
-        } else {
-            gScreenSurface = SDL_GetWindowSurface(gWindow);
-            gRenderer = new Renderer(gWindow);
-        };
-    }
+    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+		return -1;
+	}
+	else
+	{
+		gWindow = SDL_CreateWindow(
+            "Test",
+            SDL_WINDOWPOS_CENTERED,
+            SDL_WINDOWPOS_CENTERED,
+            width,
+            height,
+            SDL_WINDOW_SHOWN
+        );
 
-    return 0;
+		if(gWindow == NULL) {
+			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+			return -1;
+		} else {
+			gScreenSurface = SDL_GetWindowSurface(gWindow);
+			gRenderer = new Renderer(gWindow);
+		}
+	}
+	return 0;
 }
 
 int Window::LoadMedia(std::string imagePath)

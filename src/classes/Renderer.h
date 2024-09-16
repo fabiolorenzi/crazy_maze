@@ -11,4 +11,5 @@ class Renderer
         Renderer(SDL_Window* window);
         ~Renderer();
         void Reset();
+        void Draw(int x, int y, int width, int height, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 };

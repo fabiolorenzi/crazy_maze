@@ -28,7 +28,7 @@ int Window::Init()
 	else
 	{
 		gWindow = SDL_CreateWindow(
-            "Test",
+            "CrazyMaze",
             SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED,
             width,
@@ -36,7 +36,7 @@ int Window::Init()
             SDL_WINDOW_SHOWN
         );
 
-		if(gWindow == NULL) {
+		if (gWindow == NULL) {
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 			return -1;
 		} else {
@@ -45,23 +45,6 @@ int Window::Init()
 		}
 	}
 	return 0;
-}
-
-int Window::LoadMedia(std::string imagePath)
-{
-    gStretched = LoadSurface(imagePath.c_str());
-	if (gStretched == NULL) {
-		printf("Unable to load image %s! SDL Error: %s\n", imagePath.c_str(), SDL_GetError());
-		return -1;
-	}
-	SDL_Rect stretchRect;
-	stretchRect.x = 0;
-	stretchRect.y = 0;
-	stretchRect.w = width;
-	stretchRect.h = height;
-	SDL_BlitScaled(gStretched, NULL, gScreenSurface, &stretchRect);
-	SDL_UpdateWindowSurface(gWindow);
-    return 0;
 }
 
 SDL_Texture* Window::LoadTexture(std::string texturePath)
@@ -98,9 +81,11 @@ SDL_Surface* Window::LoadSurface(std::string imagePath)
 	return optimizedSurface;
 }
 
-void Window::RenderElements()
+void Window::RenderElements(SDL_Texture* backgroundTexture)
 {
 	gRenderer->Reset();
+
+	SDL_RenderCopy(gRenderer->renderer, backgroundTexture, NULL, NULL);
 
 	SDL_RenderPresent(gRenderer->renderer);
 }

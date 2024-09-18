@@ -11,6 +11,7 @@ class Window
     public:
         SDL_Surface* gScreenSurface;
         Renderer* gRenderer;
+        
         Window();
         ~Window();
         void RenderElements();

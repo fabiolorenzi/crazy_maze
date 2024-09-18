@@ -10,7 +10,6 @@ class Level
         SDL_Texture* background;
 
         Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, std::string backgroundPath);
-        ~Level();
     private:
         SDL_Surface* parentScreenSurface;
         Renderer* parentRenderer;

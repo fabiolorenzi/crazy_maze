@@ -7,13 +7,6 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, std::string backg
     background = LoadBackground("assets/backgrounds/background_one.png");
 }
 
-Level::~Level()
-{
-    delete background;
-	delete parentRenderer;
-	delete parentScreenSurface;
-}
-
 SDL_Texture* Level::LoadBackground(std::string texturePath)
 {
 	SDL_Texture* texture = NULL;

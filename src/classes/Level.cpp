@@ -12,6 +12,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 	if (levelNumber == LevelNumber::Menu) {
 		player = nullptr;
 	} else {
+		maze = new Maze(width, height);
 		player = new Player((width / 2) - 20, (height / 2) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF);
 	}
 }
@@ -19,6 +20,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 Level::~Level()
 {
 	delete player;
+	delete maze;
 }
 
 void Level::SetBackground(LevelNumber level)
@@ -41,6 +43,7 @@ void Level::SetBackground(LevelNumber level)
 
 void Level::RenderLevel()
 {
+	parentRenderer->Draw(maze->walls);
 	parentRenderer->Draw(player);
 }
 

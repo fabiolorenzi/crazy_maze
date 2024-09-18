@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <iostream>
+#include "Maze.h"
 #include "Player.h"
 #include "Renderer.h"
 #include "../enums/LevelNumber.h"
@@ -17,6 +18,7 @@ class Level
         void RenderLevel();
     private:
         int width, height;
+        Maze* maze;
         Player* player;
         SDL_Surface* parentScreenSurface;
         Renderer* parentRenderer;

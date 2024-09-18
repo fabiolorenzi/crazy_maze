@@ -11,8 +11,6 @@ int main()
     Window* window = new Window();
     Timer* timer = new Timer();
 
-    SDL_Texture* backgroundTexture = window->LoadTexture("assets/backgrounds/background_one.png");
-
     while (isRunning) {
         timer->ResetStartLoop();
         SDL_Event e;
@@ -23,11 +21,10 @@ int main()
             }
         }
 
-        window->RenderElements(backgroundTexture);
+        window->RenderElements();
         timer->BalanceFPS();
     }   
     
-    delete backgroundTexture;
     delete window;
     delete timer;
 

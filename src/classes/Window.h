@@ -3,23 +3,23 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <iostream>
+#include "Level.h"
 #include "Renderer.h"
 
 class Window
 {
     public:
+        SDL_Surface* gScreenSurface;
+        Renderer* gRenderer;
         Window();
         ~Window();
-        SDL_Texture* LoadTexture(std::string texturePath);
-        void RenderElements(SDL_Texture* backgroundTexture);
+        void RenderElements();
     private:
         int width;
         int height;
         SDL_Window* gWindow;
-        SDL_Surface* gScreenSurface;
         SDL_Surface* gStretched;
-        Renderer* gRenderer;
+        Level* level;
 
         int Init();
-        SDL_Surface* LoadSurface(std::string imagePath);
 };

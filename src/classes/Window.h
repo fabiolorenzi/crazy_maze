@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Level.h"
 #include "Renderer.h"
+#include "../enums/LevelNumber.h"
 
 class Window
 {

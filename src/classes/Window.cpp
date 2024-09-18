@@ -43,7 +43,7 @@ int Window::Init()
 		} else {
 			gScreenSurface = SDL_GetWindowSurface(gWindow);
 			gRenderer = new Renderer(gWindow);
-			level = new Level(gScreenSurface, gRenderer, "assets/backgrounds/background_one.png");
+			level = new Level(gScreenSurface, gRenderer, LevelNumber::LevelOne, width, height);
 		}
 	}
 	return 0;
@@ -54,6 +54,7 @@ void Window::RenderElements()
 	gRenderer->Reset();
 
 	SDL_RenderCopy(gRenderer->renderer, level->background, NULL, NULL);
+	level->RenderLevel();
 
 	SDL_RenderPresent(gRenderer->renderer);
 }

@@ -7,6 +7,7 @@ target_sources(${PROJECT_NAME}
     PRIVATE
         main.cpp
         classes/Level.cpp
+        classes/Player.cpp
         classes/Renderer.cpp
         classes/Timer.cpp
         classes/Window.cpp
@@ -16,6 +17,7 @@ target_sources(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME}
     PRIVATE
         classes
+        enums
         functions
 )
 

@@ -1,10 +1,47 @@
 #include "Level.h"
 
-Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, std::string backgroundPath)
+Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber levelNumber, int parentWidth, int parentHeight)
 {
 	parentRenderer = pRenderer;
 	parentScreenSurface = pScreenSurface;
-    background = LoadBackground("assets/backgrounds/background_one.png");
+	levelNumber = levelNumber;
+	width = parentWidth;
+	height = parentHeight;
+    SetBackground(levelNumber);
+
+	if (levelNumber == LevelNumber::Menu) {
+		player = nullptr;
+	} else {
+		player = new Player((width / 2) - 20, (height / 2) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF);
+	}
+}
+
+Level::~Level()
+{
+	delete player;
+}
+
+void Level::SetBackground(LevelNumber level)
+{
+	switch (level) {
+		case Menu:
+			background = LoadBackground("assets/backgrounds/background_menu.png");
+			break;
+		case LevelOne:
+			background = LoadBackground("assets/backgrounds/background_one.png");
+			break;
+		case LevelTwo:
+			background = LoadBackground("assets/backgrounds/background_two.png");
+			break;
+		case LevelThree:
+			background = LoadBackground("assets/backgrounds/background_three.png");
+			break;
+	}
+}
+
+void Level::RenderLevel()
+{
+	parentRenderer->Draw(player);
 }
 
 SDL_Texture* Level::LoadBackground(std::string texturePath)

@@ -12,7 +12,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 	if (levelNumber == LevelNumber::Menu) {
 		player = nullptr;
 	} else {
-		maze = new Maze(width, height);
+		maze = new Maze(levelNumber, width, height);
 		player = new Player((width / 2) - 20, (height / 2) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF);
 	}
 }

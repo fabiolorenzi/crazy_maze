@@ -1,18 +1,19 @@
 #include "Maze.h"
 
-Maze::Maze(int parentWidth, int parentHeight)
+Maze::Maze(LevelNumber _levelNumber, int parentWidth, int parentHeight)
 {
+    levelNumber = _levelNumber;
     width = parentWidth;
     height = parentHeight;
 
-    walls[0] = new Wall(0, height - 10, width, 10, 0x8B, 0x45, 0x13, 0x00);
-    walls[1] = new Wall(0, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-    walls[2] = new Wall(width - 10, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
+    PopulateWallsInMazeArray(levelNumber, walls, width, height);
 }
 
 Maze::~Maze()
 {
     for (Wall* wall : walls) {
-        delete wall;
+        if (wall) {
+            delete wall;
+        }
     }
 }

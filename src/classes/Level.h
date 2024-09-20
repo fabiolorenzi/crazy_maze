@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Renderer.h"
 #include "../enums/LevelNumber.h"
+#include "../functions/LevelElementsManager.h"
 
 class Level
 {

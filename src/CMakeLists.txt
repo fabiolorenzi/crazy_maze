@@ -14,6 +14,7 @@ target_sources(${PROJECT_NAME}
         classes/Wall.cpp
         classes/Window.cpp
         functions/KeysManager.cpp
+        functions/LevelElementsManager.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

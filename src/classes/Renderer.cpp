@@ -47,11 +47,11 @@ void Renderer::Draw(Player* player)
     SDL_RenderDrawRect(renderer, &drawing);
 }
 
-void Renderer::Draw(std::vector<Wall*>* walls)
+void Renderer::Draw(Wall* walls[3])
 {
-    for (Wall* wall : *walls) {
-        SDL_Rect drawing = {wall->x, wall->y, wall->width, wall->height};
-        SDL_SetRenderDrawColor(renderer, wall->r, wall->g, wall->b, wall->a);
+    for (int x {}; x < sizeof(walls) / sizeof(Wall*); ++x) {
+        SDL_Rect drawing = {walls[x]->x, walls[x]->y, walls[x]->width, walls[x]->height};
+        SDL_SetRenderDrawColor(renderer, walls[x]->r, walls[x]->g, walls[x]->b, walls[x]->a);
         SDL_RenderFillRect(renderer, &drawing);
         SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
         SDL_RenderDrawRect(renderer, &drawing);

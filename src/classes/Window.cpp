@@ -58,3 +58,8 @@ void Window::RenderElements()
 
 	SDL_RenderPresent(gRenderer->renderer);
 }
+
+Player* Window::GetPlayerFromLevel()
+{
+	return level->GetPlayer();
+}

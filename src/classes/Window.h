@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <iostream>
 #include "Level.h"
+#include "Player.h"
 #include "Renderer.h"
 #include "../enums/LevelNumber.h"
 
@@ -16,6 +17,7 @@ class Window
         Window();
         ~Window();
         void RenderElements();
+        Player* GetPlayerFromLevel();
     private:
         int width;
         int height;

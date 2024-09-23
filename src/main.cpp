@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "classes/Timer.h"
 #include "classes/Window.h"
+#include "functions/KeysManager.h"
 
 int main()
 {
@@ -13,13 +14,8 @@ int main()
 
     while (isRunning) {
         timer->ResetStartLoop();
-        SDL_Event e;
 
-        while (SDL_PollEvent(&e) != 0) {
-            if (e.type == SDL_QUIT) {
-                isRunning = false;
-            }
-        }
+        LoopEvent(isRunning, window);
 
         window->RenderElements();
         timer->BalanceFPS();

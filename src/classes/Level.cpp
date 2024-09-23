@@ -13,7 +13,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 		player = nullptr;
 	} else {
 		maze = new Maze(levelNumber, width, height);
-		player = new Player((width / 2) - 20, (height / 2) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF);
+		player = new Player((width / 2) - 20, (height / 2) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF, width, height);
 	}
 }
 
@@ -79,4 +79,9 @@ SDL_Surface* Level::LoadSurface(std::string imagePath)
 	}
 
 	return optimizedSurface;
+}
+
+Player* Level::GetPlayer()
+{
+	return player;
 }

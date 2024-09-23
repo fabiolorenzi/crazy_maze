@@ -1,5 +1,19 @@
 #include "KeysManager.h"
 
+void LoopEvent(bool& isRunning, Window* window)
+{
+    SDL_Event e;
+    while (SDL_PollEvent(&e) != 0) {
+        if (e.type == SDL_QUIT) {
+            isRunning = false;
+        } else if (e.type == SDL_KEYDOWN) {
+            window->GetPlayerFromLevel()->Move(KeyDownManager(e));
+        } else if (e.type == SDL_KEYUP) {
+            window->GetPlayerFromLevel()->Move(0);
+        }
+    }
+}
+
 int KeyDownManager(SDL_Event e)
 {
     switch (e.key.keysym.sym) {

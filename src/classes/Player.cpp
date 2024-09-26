@@ -12,14 +12,18 @@ Player::Player(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint
     a = _a;
     parentWidth = _parentWidth;
     parentHeight = _parentHeight;
-    verticalSpeed = 4;
+    speed = 5;
 }
 
-void Player::Move(int moveIndex)
+void Player::Move(int moveIndex, Maze& maze)
 {
-    if (moveIndex == 1 && y - verticalSpeed > 0) {
-        y -= verticalSpeed;
-    } else if (moveIndex == 2 && y + verticalSpeed + height < parentHeight) {
-        y += verticalSpeed;
+    if (moveIndex == 1 && y - speed > 0) {
+        y -= speed;
+    } else if (moveIndex == 2 && y + speed + height < parentHeight) {
+        y += speed;
+    } else if (moveIndex == 3) {
+        maze.MoveWalls(speed);
+    } else if (moveIndex == 4) {
+        maze.MoveWalls(-speed);
     }
 }

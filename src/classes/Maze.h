@@ -13,6 +13,7 @@ class Maze
 
         Maze(LevelNumber _levelNumber, int parentWidth, int parentHeight);
         ~Maze();
+        void MoveWalls(int movement);
     private:
         LevelNumber levelNumber;
         int width, height;

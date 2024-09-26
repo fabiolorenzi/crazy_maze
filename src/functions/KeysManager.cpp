@@ -7,9 +7,9 @@ void LoopEvent(bool& isRunning, Window* window)
         if (e.type == SDL_QUIT) {
             isRunning = false;
         } else if (e.type == SDL_KEYDOWN) {
-            window->GetPlayerFromLevel()->Move(KeyDownManager(e));
+            window->GetPlayerFromLevel().Move(KeyDownManager(e), window->GetMazeFromLevel());
         } else if (e.type == SDL_KEYUP) {
-            window->GetPlayerFromLevel()->Move(0);
+            window->GetPlayerFromLevel().Move(0, window->GetMazeFromLevel());
         }
     }
 }

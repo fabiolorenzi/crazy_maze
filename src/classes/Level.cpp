@@ -81,7 +81,12 @@ SDL_Surface* Level::LoadSurface(std::string imagePath)
 	return optimizedSurface;
 }
 
-Player* Level::GetPlayer()
+Player& Level::GetPlayer()
 {
-	return player;
+	return *player;
+}
+
+Maze& Level::GetMaze()
+{
+	return *maze;
 }

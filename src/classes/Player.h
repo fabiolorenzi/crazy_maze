@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <iostream>
+#include "Maze.h"
 
 class Player
 {
@@ -12,8 +13,8 @@ class Player
         SDL_Rect body;
 
         Player(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 _b, Uint8 _a, int _parentWidth, int _parentHeight);
-        void Move(int moveIndex);
+        void Move(int moveIndex, Maze& maze);
     private:
         int parentWidth, parentHeight;
-        int verticalSpeed;
+        int speed;
 };

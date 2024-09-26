@@ -59,7 +59,12 @@ void Window::RenderElements()
 	SDL_RenderPresent(gRenderer->renderer);
 }
 
-Player* Window::GetPlayerFromLevel()
+Player& Window::GetPlayerFromLevel()
 {
 	return level->GetPlayer();
+}
+
+Maze& Window::GetMazeFromLevel()
+{
+	return level->GetMaze();
 }

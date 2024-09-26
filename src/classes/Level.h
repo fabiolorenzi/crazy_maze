@@ -17,7 +17,8 @@ class Level
         Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber levelNumber, int parentWidth, int parentHeight);
         ~Level();
         void RenderLevel();
-        Player* GetPlayer();
+        Player& GetPlayer();
+        Maze& GetMaze();
     private:
         int width, height;
         Maze* maze;

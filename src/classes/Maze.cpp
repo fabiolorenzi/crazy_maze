@@ -17,3 +17,10 @@ Maze::~Maze()
         }
     }
 }
+
+void Maze::MoveWalls(int movement)
+{
+    for (Wall* wall : walls) {
+        wall ? wall->x += movement : NULL;
+    }
+}

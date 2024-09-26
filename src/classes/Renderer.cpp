@@ -47,9 +47,9 @@ void Renderer::Draw(Player* player)
     SDL_RenderDrawRect(renderer, &drawing);
 }
 
-void Renderer::Draw(Wall* walls[3])
+void Renderer::Draw(Wall* walls[4])
 {
-    for (int x {}; x < sizeof(walls) / sizeof(Wall*); ++x) {
+    for (int x {}; x < 4; ++x) {
         SDL_Rect drawing = {walls[x]->x, walls[x]->y, walls[x]->width, walls[x]->height};
         SDL_SetRenderDrawColor(renderer, walls[x]->r, walls[x]->g, walls[x]->b, walls[x]->a);
         SDL_RenderFillRect(renderer, &drawing);

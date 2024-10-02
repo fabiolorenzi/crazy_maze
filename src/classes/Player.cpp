@@ -72,8 +72,8 @@ void Player::CheckMazeCollisions(Maze& maze, bool isVerticalMove, int movement)
 
 void Player::CheckSideCollision(bool isVerticalMove, int movement, int p_a_x, int p_a_y, int p_b_x, int p_b_y, int p_c_x, int p_c_y, int p_d_x, int p_d_y, int o_a_x, int o_a_y, int o_b_x, int o_b_y, int o_c_x, int o_c_y, int o_d_x, int o_d_y)
 {
-    if (isVerticalMove) {
-        if ((p_b_x > o_a_x || p_a_x < o_b_x) && ((p_a_y + movement < o_d_y && p_d_y + movement > o_a_y))) {
+    if (isVerticalMove && movableTop) {
+        if (((p_b_x > o_a_x && p_b_x < o_b_x) || (p_a_x < o_b_x && p_a_x > o_a_x)) && ((p_a_y + movement < o_d_y && p_a_y + movement > o_a_y))) {
             movableTop = false;
         }
     }

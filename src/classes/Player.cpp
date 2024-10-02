@@ -30,9 +30,11 @@ void Player::Move(int moveIndex, Maze& maze)
     } else if (moveIndex == 3) {
         CheckMazeCollisions(maze, false, speed);
         maze.MoveWalls(movableLeft ? speed : 0);
+        maze.MoveEnemies(movableLeft ? speed : 0);
     } else if (moveIndex == 4) {
         CheckMazeCollisions(maze, false, -speed);
         maze.MoveWalls(movableRight ? -speed : 0);
+        maze.MoveEnemies(movableRight ? -speed : 0);
     }
 }
 

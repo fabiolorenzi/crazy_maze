@@ -44,6 +44,7 @@ void Level::SetBackground(LevelNumber level)
 void Level::RenderLevel()
 {
 	parentRenderer->Draw(maze->walls);
+	parentRenderer->Draw(maze->enemies);
 	parentRenderer->Draw(player);
 }
 

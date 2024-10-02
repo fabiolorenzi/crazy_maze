@@ -57,3 +57,14 @@ void Renderer::Draw(Wall* walls[4])
         SDL_RenderDrawRect(renderer, &drawing);
     }
 }
+
+void Renderer::Draw(Enemy* enemies[1])
+{
+    for (int x {}; x < 1; ++x) {
+        SDL_Rect drawing = {enemies[x]->x, enemies[x]->y, enemies[x]->width, enemies[x]->height};
+        SDL_SetRenderDrawColor(renderer, enemies[x]->r, enemies[x]->g, enemies[x]->b, enemies[x]->a);
+        SDL_RenderFillRect(renderer, &drawing);
+        SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
+        SDL_RenderDrawRect(renderer, &drawing);
+    }
+}

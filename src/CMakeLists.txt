@@ -6,6 +6,7 @@ add_executable(CrazyMaze)
 target_sources(${PROJECT_NAME}
     PRIVATE
         main.cpp
+        classes/Enemy.cpp
         classes/Level.cpp
         classes/Maze.cpp
         classes/Player.cpp

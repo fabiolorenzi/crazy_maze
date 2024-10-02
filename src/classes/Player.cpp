@@ -79,7 +79,7 @@ void Player::CheckSideCollision(bool isVerticalMove, int movement, int p_a_x, in
     }
 
     if (isVerticalMove && movableBottom) {
-        if (((p_b_x > o_a_x && p_b_x < o_b_x) || (p_a_x < o_b_x && p_a_x > o_a_x)) && ((p_d_y + movement < o_a_y && p_d_y + movement > o_d_y))) {
+        if (((p_b_x > o_a_x && p_b_x < o_b_x) || (p_a_x < o_b_x && p_a_x > o_a_x)) && ((p_d_y + movement > o_a_y && p_d_y + movement < o_d_y))) {
             movableBottom = false;
         }
     }

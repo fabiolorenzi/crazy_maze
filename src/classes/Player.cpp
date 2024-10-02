@@ -63,14 +63,14 @@ void Player::CheckMazeCollisions(Maze& maze, bool isVerticalMove, int movement)
             int wd_x = maze.walls[x]->x;
             int wd_y = maze.walls[x]->y + maze.walls[x]->height;
 
-            CheckSideCollision(isVerticalMove, movement, pa_x, pa_y, pb_x, pb_y, pc_x, pc_y, pd_x, pd_y, wa_x, wa_y, wb_x, wb_y, wc_x, wc_y, wd_x, wd_y);
+            CheckMoveCollision(isVerticalMove, movement, pa_x, pa_y, pb_x, pb_y, pc_x, pc_y, pd_x, pd_y, wa_x, wa_y, wb_x, wb_y, wc_x, wc_y, wd_x, wd_y);
         } else {
             x = 100;
         }
     }
 }
 
-void Player::CheckSideCollision(bool isVerticalMove, int movement, int p_a_x, int p_a_y, int p_b_x, int p_b_y, int p_c_x, int p_c_y, int p_d_x, int p_d_y, int o_a_x, int o_a_y, int o_b_x, int o_b_y, int o_c_x, int o_c_y, int o_d_x, int o_d_y)
+void Player::CheckMoveCollision(bool isVerticalMove, int movement, int p_a_x, int p_a_y, int p_b_x, int p_b_y, int p_c_x, int p_c_y, int p_d_x, int p_d_y, int o_a_x, int o_a_y, int o_b_x, int o_b_y, int o_c_x, int o_c_y, int o_d_x, int o_d_y)
 {
     if (isVerticalMove && movableTop) {
         if (((p_b_x > o_a_x && p_b_x < o_b_x) || (p_a_x < o_b_x && p_a_x > o_a_x)) && ((p_a_y + movement < o_d_y && p_a_y + movement > o_a_y))) {
@@ -81,6 +81,18 @@ void Player::CheckSideCollision(bool isVerticalMove, int movement, int p_a_x, in
     if (isVerticalMove && movableBottom) {
         if (((p_b_x > o_a_x && p_b_x < o_b_x) || (p_a_x < o_b_x && p_a_x > o_a_x)) && ((p_d_y + movement > o_a_y && p_d_y + movement < o_d_y))) {
             movableBottom = false;
+        }
+    }
+
+    if (!isVerticalMove && movableLeft) {
+        if ((p_a_x < o_b_x + movement && p_a_x > o_a_x + movement) && ((p_a_y < o_c_y && p_a_y > o_b_y) || (p_d_y < o_c_y && p_d_y > o_b_y))) {
+            movableLeft = false;
+        }
+    }
+
+    if (!isVerticalMove && movableRight) {
+        if ((p_b_x < o_b_x + movement && p_b_x> o_a_x + movement) && ((p_b_y < o_d_y && p_b_y > o_a_y) || (p_c_y > o_a_y && p_c_y < o_d_y))) {
+            movableRight = false;
         }
     }
 }

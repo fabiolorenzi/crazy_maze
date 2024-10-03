@@ -14,20 +14,11 @@ Enemy::Enemy(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 
     parentHeight = _parentHeight;
     speed = speed;
     shootDelayDiv = _shootDelayDiv;
-    isAlive = true;
-
-    // LoopManager();
 }
 
-Enemy::~Enemy()
+void Enemy::Shoot(int counter)
 {
-    isAlive = false;
-}
-
-void Enemy::LoopManager()
-{
-    while (isAlive) {
-        std::cout << "shoot" << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds((int)(5000 / shootDelayDiv)));
+    if (counter % shootDelayDiv == 0) {
+        std::cout << "shoot " << counter << std::endl;
     }
 }

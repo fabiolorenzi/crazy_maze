@@ -3,8 +3,6 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <iostream>
-#include <chrono>
-#include <thread>
 
 class Enemy
 {
@@ -14,11 +12,8 @@ class Enemy
         SDL_Rect body;
 
         Enemy(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 _b, Uint8 _a, int _parentWidth, int _parentHeight, int _speed, int _shootDelay);
-        ~Enemy();
+        void Shoot(int counter);
     private:
-        bool isAlive;
         int parentWidth, parentHeight;
         int speed, shootDelayDiv;
-
-        void LoopManager();
 };

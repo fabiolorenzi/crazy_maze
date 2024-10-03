@@ -19,8 +19,11 @@ class Level
         void RenderLevel();
         Player& GetPlayer();
         Maze& GetMaze();
+        void UpdateTime();
     private:
         int width, height;
+        Uint32 startTime, time;
+        float currentSecond;
         Maze* maze;
         Player* player;
         SDL_Surface* parentScreenSurface;

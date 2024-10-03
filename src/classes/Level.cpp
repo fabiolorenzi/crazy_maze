@@ -7,13 +7,18 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 	levelNumber = levelNumber;
 	width = parentWidth;
 	height = parentHeight;
+	currentSecond = 0.f;
     SetBackground(levelNumber);
 
 	if (levelNumber == LevelNumber::Menu) {
 		player = nullptr;
+		startTime = SDL_GetTicks();
+		time = startTime;
 	} else {
 		maze = new Maze(levelNumber, width, height);
 		player = new Player((width / 2) - 20, (height / 2) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF, width, height);
+		startTime = SDL_GetTicks();
+		time = startTime;
 	}
 }
 
@@ -90,4 +95,14 @@ Player& Level::GetPlayer()
 Maze& Level::GetMaze()
 {
 	return *maze;
+}
+
+void Level::UpdateTime()
+{
+	time = SDL_GetTicks() - startTime;
+
+	if ((time / 1000) >= currentSecond) {
+		currentSecond += 1.f;
+		maze->TriggerEnemies((int)(time / 1000));
+	}
 }

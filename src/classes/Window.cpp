@@ -55,6 +55,7 @@ void Window::RenderElements()
 
 	SDL_RenderCopy(gRenderer->renderer, level->background, NULL, NULL);
 	level->RenderLevel();
+	level->UpdateTime();
 
 	SDL_RenderPresent(gRenderer->renderer);
 }

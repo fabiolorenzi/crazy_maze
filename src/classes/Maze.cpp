@@ -42,6 +42,6 @@ void Maze::MoveEnemies(int movement)
 void Maze::TriggerEnemies(int time)
 {
     for (Enemy* enemy : enemies) {
-        if (enemy) enemy->Shoot(time);
+        if (enemy) enemy->Shoot();
     }
 }

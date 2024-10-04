@@ -71,20 +71,17 @@ void Renderer::Draw(Enemy* enemies[2])
 
 void Renderer::ManageBullets(Enemy* enemies[2])
 {
-    for (int i {}; i < 2; ++i) {
-        for (int x {}; x < 4; ++x) {
-            if (enemies[i]->bullets[x] != nullptr) {
-                if (enemies[i]->bullets[x]->y >= -20 && enemies[i]->bullets[x]->x >= 0 && enemies[i]->bullets[x]->x <= 1200) {
-                    enemies[i]->bullets[x]->Move();
-                    SDL_Rect drawing = {enemies[i]->bullets[x]->x, enemies[i]->bullets[x]->y, enemies[i]->bullets[x]->width, enemies[i]->bullets[x]->height};
-                    SDL_SetRenderDrawColor(renderer, enemies[i]->bullets[x]->r, enemies[i]->bullets[x]->g, enemies[i]->bullets[x]->b, enemies[i]->bullets[x]->a);
-                    SDL_RenderFillRect(renderer, &drawing);
-                    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
-                    SDL_RenderDrawRect(renderer, &drawing);
-                } else {
-                    std::cout << "deleted bullet: " << x << std::endl;
-                    enemies[i]->DeleteBullet(x);
-                }
+    for (int x {}; x < 2; ++x) {
+        if (enemies[x]->bullet != nullptr) {
+            if (enemies[x]->bullet->y >= -20 && enemies[x]->bullet->x >= 0 && enemies[x]->bullet->x <= 1200) {
+                enemies[x]->bullet->Move();
+                SDL_Rect drawing = {enemies[x]->bullet->x, enemies[x]->bullet->y, enemies[x]->bullet->width, enemies[x]->bullet->height};
+                SDL_SetRenderDrawColor(renderer, enemies[x]->bullet->r, enemies[x]->bullet->g, enemies[x]->bullet->b, enemies[x]->bullet->a);
+                SDL_RenderFillRect(renderer, &drawing);
+                SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
+                SDL_RenderDrawRect(renderer, &drawing);
+            } else {
+                enemies[x]->DeleteBullet();
             }
         }
     }

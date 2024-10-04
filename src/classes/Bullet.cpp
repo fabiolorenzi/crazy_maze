@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 _b, Uint8 _a)
+Bullet::Bullet(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 _b, Uint8 _a, int _speed)
 {
     x = _x;
     y = _y;
@@ -10,7 +10,7 @@ Bullet::Bullet(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint
     g = _g;
     b = _b;
     a = _a;
-    speed = 5;
+    speed = _speed;
 }
 
 void Bullet::Move()

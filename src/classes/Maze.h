@@ -17,6 +17,7 @@ class Maze
         ~Maze();
         void MoveWalls(int movement);
         void MoveEnemies(int movement);
+        void MoveBullets(int movement);
         void TriggerEnemies(int time);
     private:
         LevelNumber levelNumber;

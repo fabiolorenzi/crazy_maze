@@ -14,6 +14,6 @@ void PopulateEnemiesInMazeArray(LevelNumber levelNumber, Enemy* enemiesArray[20]
 {
     if (levelNumber == LevelNumber::LevelOne) {
         enemiesArray[0] = new Enemy(width - 100, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 5, 10);
-        enemiesArray[1] = new Enemy(50, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 0, 10);
+        enemiesArray[1] = new Enemy(50, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 0, 5);
     }
 }

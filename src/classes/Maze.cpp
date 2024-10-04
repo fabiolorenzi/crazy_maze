@@ -39,6 +39,15 @@ void Maze::MoveEnemies(int movement)
     }
 }
 
+void Maze::MoveBullets(int movement)
+{
+    if (movement != 0) {
+        for (Enemy* enemy : enemies) {
+            enemy && enemy->bullet ? enemy->bullet->x += movement : NULL;
+        }
+    }
+}
+
 void Maze::TriggerEnemies(int time)
 {
     for (Enemy* enemy : enemies) {

@@ -1,6 +1,6 @@
 #include "Enemy.h"
 
-Enemy::Enemy(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 _b, Uint8 _a, int _parentWidth, int _parentHeight, int _speed, int _shootSpeed)
+Enemy::Enemy(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 _b, Uint8 _a, int _parentWidth, int _parentHeight, unsigned int _shootSpeed)
 {
     x = _x;
     y = _y;
@@ -12,7 +12,6 @@ Enemy::Enemy(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 
     a = _a;
     parentWidth = _parentWidth;
     parentHeight = _parentHeight;
-    speed = speed;
     shootSpeed = _shootSpeed;
     bullet = nullptr;
 }

@@ -73,7 +73,7 @@ void Renderer::ManageBullets(Enemy* enemies[2])
 {
     for (int x {}; x < 2; ++x) {
         if (enemies[x]->bullet != nullptr) {
-            if (enemies[x]->bullet->y >= -20 && enemies[x]->bullet->x >= 0 && enemies[x]->bullet->x <= 1200) {
+            if (enemies[x]->bullet->y >= -20 && enemies[x]->bullet->x >= -100 && enemies[x]->bullet->x <= 1500) {
                 enemies[x]->bullet->Move();
                 SDL_Rect drawing = {enemies[x]->bullet->x, enemies[x]->bullet->y, enemies[x]->bullet->width, enemies[x]->bullet->height};
                 SDL_SetRenderDrawColor(renderer, enemies[x]->bullet->r, enemies[x]->bullet->g, enemies[x]->bullet->b, enemies[x]->bullet->a);

@@ -58,13 +58,34 @@ void Renderer::Draw(Wall* walls[4])
     }
 }
 
-void Renderer::Draw(Enemy* enemies[1])
+void Renderer::Draw(Enemy* enemies[2])
 {
-    for (int x {}; x < 1; ++x) {
+    for (int x {}; x < 2; ++x) {
         SDL_Rect drawing = {enemies[x]->x, enemies[x]->y, enemies[x]->width, enemies[x]->height};
         SDL_SetRenderDrawColor(renderer, enemies[x]->r, enemies[x]->g, enemies[x]->b, enemies[x]->a);
         SDL_RenderFillRect(renderer, &drawing);
         SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
         SDL_RenderDrawRect(renderer, &drawing);
+    }
+}
+
+void Renderer::ManageBullets(Enemy* enemies[2])
+{
+    for (int i {}; i < 2; ++i) {
+        for (int x {}; x < 4; ++x) {
+            if (enemies[i]->bullets[x] != nullptr) {
+                if (enemies[i]->bullets[x]->y >= -20 && enemies[i]->bullets[x]->x >= 0 && enemies[i]->bullets[x]->x <= 1200) {
+                    enemies[i]->bullets[x]->Move();
+                    SDL_Rect drawing = {enemies[i]->bullets[x]->x, enemies[i]->bullets[x]->y, enemies[i]->bullets[x]->width, enemies[i]->bullets[x]->height};
+                    SDL_SetRenderDrawColor(renderer, enemies[i]->bullets[x]->r, enemies[i]->bullets[x]->g, enemies[i]->bullets[x]->b, enemies[i]->bullets[x]->a);
+                    SDL_RenderFillRect(renderer, &drawing);
+                    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
+                    SDL_RenderDrawRect(renderer, &drawing);
+                } else {
+                    std::cout << "deleted bullet: " << x << std::endl;
+                    enemies[i]->DeleteBullet(x);
+                }
+            }
+        }
     }
 }

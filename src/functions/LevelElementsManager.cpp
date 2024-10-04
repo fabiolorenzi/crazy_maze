@@ -13,6 +13,7 @@ void PopulateWallsInMazeArray(LevelNumber levelNumber, Wall* wallsArray[100], in
 void PopulateEnemiesInMazeArray(LevelNumber levelNumber, Enemy* enemiesArray[20], int width, int height)
 {
     if (levelNumber == LevelNumber::LevelOne) {
-        enemiesArray[0] = new Enemy(width  - 100, height - 40, 40, 40, 0x00, 0x00, 0xff, 0xFF, width, height, 5, 1);
+        enemiesArray[0] = new Enemy(width - 100, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 5, 1);
+        enemiesArray[1] = new Enemy(50, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 0, 1);
     }
 }

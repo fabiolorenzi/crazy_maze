@@ -13,15 +13,11 @@ Maze::Maze(LevelNumber _levelNumber, int parentWidth, int parentHeight)
 Maze::~Maze()
 {
     for (Enemy* enemy : enemies) {
-        if (enemy) {
-            delete enemy;
-        }
+        if (enemy) delete enemy;
     }
 
     for (Wall* wall : walls) {
-        if (wall) {
-            delete wall;
-        }
+        if (wall) delete wall;
     }
 }
 

@@ -17,5 +17,6 @@ class Renderer
         void Draw(int x, int y, int width, int height, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
         void Draw(Player* player);
         void Draw(Wall* walls[4]);
-        void Draw(Enemy* enemies[1]);
+        void Draw(Enemy* enemies[2]);
+        void ManageBullets(Enemy* enemies[2]);
 };

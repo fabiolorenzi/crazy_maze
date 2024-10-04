@@ -16,9 +16,27 @@ Enemy::Enemy(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 
     shootDelayDiv = _shootDelayDiv;
 }
 
-void Enemy::Shoot(int counter)
+Enemy::~Enemy()
 {
-    if (counter % shootDelayDiv == 0) {
-        std::cout << "shoot " << counter << std::endl;
+    for (Bullet* bullet : bullets) {
+        if (bullet) delete bullet;
     }
+}
+
+int Enemy::Shoot(int counter)
+{
+    if (counter % shootDelayDiv == 0 && x >= -50 && x <= parentWidth) {
+        for (int x {}; x < 4; ++x) {
+            if (bullets[x] == nullptr) {
+                bullets[x] = new Bullet(x + (width / 2) - 10, y, 20, 20, 0xFF, 0xFF, 0x00, 0xFF);
+                return 0;
+            }
+        }
+    }
+    return 0;
+}
+
+void Enemy::DeleteBullet(int index)
+{
+    delete bullets[x];
 }

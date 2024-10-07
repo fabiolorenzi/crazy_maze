@@ -100,3 +100,40 @@ void Player::CheckMoveCollision(bool isVerticalMove, int movement, int p_a_x, in
         }
     }
 }
+
+bool Player::CheckBulletCollisions(Bullet* bullet)
+{
+    int pa_x = x;
+    int pa_y = y;
+    int pb_x = x + width;
+    int pb_y = y;
+    int pc_x = x + width;
+    int pc_y = y + height;
+    int pd_x = x;
+    int pd_y = y + height;
+    int ba_x = bullet->x;
+    int ba_y = bullet->y;
+    int bb_x = bullet->x + bullet->width;
+    int bb_y = bullet->y;
+    int bc_x = bullet->x + bullet->width;
+    int bc_y = bullet->y + bullet->height;
+    int bd_x = bullet->x;
+    int bd_y = bullet->y + bullet->height;
+
+    bool hitTop = ((pb_x > ba_x && pb_x < bb_x) || (pa_x < bb_x && pa_x > ba_x)) && ((pa_y < bd_y && pa_y > ba_y));
+    bool hitBottom = ((pb_x > ba_x && pb_x < bb_x) || (pa_x < bb_x && pa_x > ba_x)) && ((pd_y > ba_y && pd_y < bd_y));
+    bool hitLeft = (pa_x < bb_x && pa_x > ba_x) && ((pa_y < bc_y && pa_y > bb_y) || (pd_y < bc_y && pd_y > bb_y));
+    bool hitRight = (pb_x < bb_x && pb_x> ba_x) && ((pb_y < bd_y && pb_y > ba_y) || (pc_y > ba_y && pc_y < bd_y));
+
+    if (hitTop || hitBottom || hitLeft || hitRight) {
+        PlayerHit();
+        return true;
+    }
+
+    return false;
+}
+
+void Player::PlayerHit()
+{
+    std::cout << "hit" << std::endl;
+}

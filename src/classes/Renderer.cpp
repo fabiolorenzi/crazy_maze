@@ -69,11 +69,11 @@ void Renderer::Draw(Enemy* enemies[2])
     }
 }
 
-void Renderer::ManageBullets(Enemy* enemies[2])
+void Renderer::ManageBullets(Enemy* enemies[2], Player& player)
 {
     for (int x {}; x < 2; ++x) {
         if (enemies[x]->bullet != nullptr) {
-            if (enemies[x]->bullet->y >= -20 && enemies[x]->bullet->x >= -100 && enemies[x]->bullet->x <= 1500) {
+            if (enemies[x]->bullet->y >= -20 && enemies[x]->bullet->x >= -100 && enemies[x]->bullet->x <= 1500 && !player.CheckBulletCollisions(enemies[x]->bullet)) {
                 enemies[x]->bullet->Move();
                 SDL_Rect drawing = {enemies[x]->bullet->x, enemies[x]->bullet->y, enemies[x]->bullet->width, enemies[x]->bullet->height};
                 SDL_SetRenderDrawColor(renderer, enemies[x]->bullet->r, enemies[x]->bullet->g, enemies[x]->bullet->b, enemies[x]->bullet->a);

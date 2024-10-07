@@ -18,5 +18,5 @@ class Renderer
         void Draw(Player* player);
         void Draw(Wall* walls[4]);
         void Draw(Enemy* enemies[2]);
-        void ManageBullets(Enemy* enemies[2]);
+        void ManageBullets(Enemy* enemies[2], Player& player);
 };

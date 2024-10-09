@@ -14,3 +14,8 @@ void UI::UpdateLife(int newValue)
 {
     life = newValue;
 }
+
+void UI::UpdateTime(int newValue)
+{
+    time = newValue;
+}

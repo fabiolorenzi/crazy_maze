@@ -121,12 +121,14 @@ bool Player::CheckBulletCollisions(Bullet* bullet)
     int bd_x = bullet->x;
     int bd_y = bullet->y + bullet->height;
 
-    bool hitTop = ((pb_x > ba_x && pb_x < bb_x) || (pa_x < bb_x && pa_x > ba_x)) && ((pa_y < bd_y && pa_y > ba_y));
-    bool hitBottom = ((pb_x > ba_x && pb_x < bb_x) || (pa_x < bb_x && pa_x > ba_x)) && ((pd_y > ba_y && pd_y < bd_y));
-    bool hitLeft = (pa_x < bb_x && pa_x > ba_x) && ((pa_y < bc_y && pa_y > bb_y) || (pd_y < bc_y && pd_y > bb_y));
-    bool hitRight = (pb_x < bb_x && pb_x> ba_x) && ((pb_y < bd_y && pb_y > ba_y) || (pc_y > ba_y && pc_y < bd_y));
+    bool hitTop = ((pb_x >= ba_x && pb_x <= bb_x) || (pa_x <= bb_x && pa_x >= ba_x)) && ((pa_y <= bd_y && pa_y >= ba_y));
+    bool hitBottom = ((pb_x >= ba_x && pb_x <= bb_x) || (pa_x <= bb_x && pa_x >= ba_x)) && ((pd_y >= ba_y && pd_y <= bd_y));
+    bool hitLeft = (pa_x <= bb_x && pa_x >= ba_x) && ((pa_y <= bc_y && pa_y >= bb_y) || (pd_y <= bc_y && pd_y >= bb_y));
+    bool hitRight = (pb_x <= bb_x && pb_x >= ba_x) && ((pb_y <= bd_y && pb_y >= ba_y) || (pc_y >= ba_y && pc_y <= bd_y));
+    bool hitCenter = (pa_x <= ba_x && pb_x >= bb_x) && (pd_y >= ba_y && pa_y <= bd_y);
 
-    if (hitTop || hitBottom || hitLeft || hitRight) {
+    if (hitTop || hitBottom || hitLeft || hitRight || hitCenter) {
+        bullet->Hit();
         PlayerHit();
         return true;
     }

@@ -111,6 +111,6 @@ void Level::UpdateTime()
 		currentSecond += 1.f;
 		remainingTime -= 1;
 		maze->TriggerEnemies((int)(time / 1000));
-		std::cout << remainingTime << std::endl;
+		// std::cout << remainingTime << std::endl;
 	}
 }

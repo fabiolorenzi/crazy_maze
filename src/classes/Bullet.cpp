@@ -11,9 +11,16 @@ Bullet::Bullet(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint
     b = _b;
     a = _a;
     speed = _speed;
+    hasHit = false;
 }
 
 void Bullet::Move()
 {
     y -= speed;
+}
+
+void Bullet::Hit()
+{
+    hasHit = true;
+    x = 2000;
 }

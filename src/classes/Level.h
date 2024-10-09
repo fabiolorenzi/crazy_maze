@@ -24,6 +24,7 @@ class Level
         int width, height;
         Uint32 startTime, time;
         float currentSecond;
+        int remainingTime;
         Maze* maze;
         Player* player;
         SDL_Surface* parentScreenSurface;

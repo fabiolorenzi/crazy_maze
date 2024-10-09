@@ -1,5 +1,14 @@
 #include "LevelElementsManager.h"
 
+unsigned int SetLevelInitialTimer(LevelNumber levelNumber)
+{
+    if (levelNumber == LevelNumber::LevelOne) {
+        return 30;
+    }
+    
+    return 0;
+}
+
 void PopulateWallsInMazeArray(LevelNumber levelNumber, Wall* wallsArray[100], int width, int height)
 {
     if (levelNumber == LevelNumber::LevelOne) {

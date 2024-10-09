@@ -10,6 +10,7 @@ Player::Player(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint
     g = _g;
     b = _b;
     a = _a;
+    life = 4;
     parentWidth = _parentWidth;
     parentHeight = _parentHeight;
     speed = 5;
@@ -136,4 +137,5 @@ bool Player::CheckBulletCollisions(Bullet* bullet)
 void Player::PlayerHit()
 {
     std::cout << "hit" << std::endl;
+    life -= 1;
 }

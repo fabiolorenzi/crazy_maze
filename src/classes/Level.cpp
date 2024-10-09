@@ -19,6 +19,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 		player = new Player((width / 2) - 20, (height / 2) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF, width, height);
 		startTime = SDL_GetTicks();
 		time = startTime;
+		remainingTime = SetLevelInitialTimer(levelNumber);
 	}
 }
 
@@ -104,6 +105,8 @@ void Level::UpdateTime()
 
 	if ((time / 1000) >= currentSecond) {
 		currentSecond += 1.f;
+		remainingTime -= 1;
 		maze->TriggerEnemies((int)(time / 1000));
+		std::cout << remainingTime << std::endl;
 	}
 }

@@ -12,6 +12,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 
 	if (levelNumber == LevelNumber::Menu) {
 		player = nullptr;
+		ui = nullptr;
 		startTime = SDL_GetTicks();
 		time = startTime;
 	} else {
@@ -20,6 +21,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 		startTime = SDL_GetTicks();
 		time = startTime;
 		remainingTime = SetLevelInitialTimer(levelNumber);
+		ui = new UI(player->life, remainingTime);
 	}
 }
 
@@ -27,6 +29,7 @@ Level::~Level()
 {
 	delete player;
 	delete maze;
+	delete ui;
 }
 
 void Level::SetBackground(LevelNumber level)
@@ -53,6 +56,7 @@ void Level::RenderLevel()
 	parentRenderer->Draw(maze->enemies);
 	parentRenderer->ManageBullets(maze->enemies, *player);
 	parentRenderer->Draw(player);
+	parentRenderer->Draw(ui);
 }
 
 SDL_Texture* Level::LoadBackground(std::string texturePath)

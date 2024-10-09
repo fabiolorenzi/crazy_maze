@@ -69,6 +69,10 @@ void Renderer::Draw(Enemy* enemies[2])
     }
 }
 
+void Renderer::Draw(UI* ui)
+{
+}
+
 void Renderer::ManageBullets(Enemy* enemies[2], Player& player)
 {
     for (int x {}; x < 2; ++x) {

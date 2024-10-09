@@ -5,6 +5,7 @@
 #include "Maze.h"
 #include "Player.h"
 #include "Renderer.h"
+#include "UI.h"
 #include "../enums/LevelNumber.h"
 #include "../functions/LevelElementsManager.h"
 
@@ -27,6 +28,7 @@ class Level
         int remainingTime;
         Maze* maze;
         Player* player;
+        UI* ui;
         SDL_Surface* parentScreenSurface;
         Renderer* parentRenderer;
 

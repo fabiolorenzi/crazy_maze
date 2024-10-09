@@ -138,6 +138,5 @@ bool Player::CheckBulletCollisions(Bullet* bullet)
 
 void Player::PlayerHit()
 {
-    std::cout << "hit" << std::endl;
     life -= 1;
 }

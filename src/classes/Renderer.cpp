@@ -71,15 +71,27 @@ void Renderer::Draw(Enemy* enemies[2])
 
 void Renderer::Draw(UI* ui)
 {
+    int lifeWidth = ui-> life > 0 ? ui->width / 4 * ui->life : 0;
+    SDL_Rect lifeDrawing = {ui->x, ui->y, lifeWidth, ui->height};
+    SDL_Rect drawing = {ui->x, ui->y, ui->width, ui->height};
+    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
+    SDL_RenderFillRect(renderer, &drawing);
+    SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF);
+    SDL_RenderFillRect(renderer, &lifeDrawing);
+    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
+    SDL_RenderDrawRect(renderer, &drawing);
 }
 
-void Renderer::ManageBullets(Enemy* enemies[2], Player& player)
+void Renderer::ManageBullets(Enemy* enemies[2], Player& player, UI& ui)
 {
     for (int x {}; x < 2; ++x) {
         if (enemies[x]->bullet != nullptr) {
             if (enemies[x]->bullet->y >= -20 && enemies[x]->bullet->x >= -100 && (enemies[x]->bullet->hasHit || enemies[x]->bullet->x <= 1500)) {
                 enemies[x]->bullet->Move();
-                player.CheckBulletCollisions(enemies[x]->bullet);
+                bool hasPlayerBeingHit = player.CheckBulletCollisions(enemies[x]->bullet);
+                if (hasPlayerBeingHit) {
+                    ui.UpdateLife(player.life);
+                }
                 SDL_Rect drawing = {enemies[x]->bullet->x, enemies[x]->bullet->y, enemies[x]->bullet->width, enemies[x]->bullet->height};
                 SDL_SetRenderDrawColor(renderer, enemies[x]->bullet->r, enemies[x]->bullet->g, enemies[x]->bullet->b, enemies[x]->bullet->a);
                 SDL_RenderFillRect(renderer, &drawing);

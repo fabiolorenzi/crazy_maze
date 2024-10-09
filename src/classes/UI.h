@@ -4,8 +4,11 @@
 
 class UI {
     public:
-        UI(int _life, int _time);
-    private:
+        int x, y;
+        int width, height;
+        
+        UI(int _x, int _y, int _width, int _height, int _life, int _time);
+        void UpdateLife(int newValue);
         int life;
         int time;
 };

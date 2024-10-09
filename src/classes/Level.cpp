@@ -21,7 +21,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 		startTime = SDL_GetTicks();
 		time = startTime;
 		remainingTime = SetLevelInitialTimer(levelNumber);
-		ui = new UI(player->life, remainingTime);
+		ui = new UI(1000, 20, 250, 20, player->life, remainingTime);
 	}
 }
 
@@ -54,7 +54,7 @@ void Level::RenderLevel()
 {
 	parentRenderer->Draw(maze->walls);
 	parentRenderer->Draw(maze->enemies);
-	parentRenderer->ManageBullets(maze->enemies, *player);
+	parentRenderer->ManageBullets(maze->enemies, *player, *ui);
 	parentRenderer->Draw(player);
 	parentRenderer->Draw(ui);
 }

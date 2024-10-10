@@ -50,4 +50,14 @@ string(TIMESTAMP AFTER "%s")
 math(EXPR DELTASDL_image "${AFTER} - ${BEFORE}")
 MESSAGE(STATUS "SDL_image TIME: ${DELTASDL_image}s")
 
+string(TIMESTAMP BEFORE "%s")
+CPMAddPackage(GITHUB_REPOSITORY libsdl-org/SDL_ttf
+        GIT_TAG release-2.22.0
+)
+find_package(SDL_ttf REQUIRED)
+include_directories(${SDL_ttf_SOURCE_DIR})
+string(TIMESTAMP AFTER "%s")
+math(EXPR DELTASDL_ttf "${AFTER} - ${BEFORE}")
+MESSAGE(STATUS "SDL_ttf TIME: ${DELTASDL_ttf}s")
+
 ENDIF()

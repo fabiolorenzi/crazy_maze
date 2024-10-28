@@ -22,12 +22,11 @@ class Renderer
         void Draw(Player* player);
         void Draw(Wall* walls[4]);
         void Draw(Enemy* enemies[2]);
-        void Draw(UI* ui);
+        void Draw(UI* ui, int width, int height);
         void ManageBullets(Enemy* enemies[2], Player& player, UI& ui);
-        int LoadFont(TTF_Font* font, const char* fontPath, int fontSize, SDL_Color* fontColour, SDL_Color colour);
+        int LoadFont(TTF_Font*& font, const char* fontPath, int fontSize);
     private:
         SDL_Surface* lifeTextSurface;
         SDL_Texture* lifeTextTexture;
         TTF_Font* lifeFont;
-        SDL_Color* lifeFontColour;
 };

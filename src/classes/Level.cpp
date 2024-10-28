@@ -56,7 +56,7 @@ void Level::RenderLevel()
 	parentRenderer->Draw(maze->enemies);
 	parentRenderer->ManageBullets(maze->enemies, *player, *ui);
 	parentRenderer->Draw(player);
-	parentRenderer->Draw(ui);
+	parentRenderer->Draw(ui, width, height);
 }
 
 SDL_Texture* Level::LoadBackground(std::string texturePath)

@@ -13,8 +13,11 @@ Renderer::Renderer(SDL_Window* window)
     } else {
         SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
         int imgFlags = IMG_INIT_PNG;
-        TTF_Init();
-        LoadFont(lifeFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 28, lifeFontColour, {255, 255, 255, 0});
+        int ttfFlags = TTF_Init();
+        if (ttfFlags == -1) {
+            printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+        }
+        LoadFont(lifeFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 28);
         if (!(IMG_Init(imgFlags) && imgFlags)) {
             printf("SDL_Image could not initialize! SDL_Error: %s\n", SDL_GetError());
         }
@@ -23,12 +26,12 @@ Renderer::Renderer(SDL_Window* window)
 
 Renderer::~Renderer()
 {
-    delete lifeFontColour;
+    SDL_FreeSurface(lifeTextSurface);
+    SDL_DestroyTexture(lifeTextTexture);
+    SDL_DestroyRenderer(renderer);
     delete lifeFont;
     delete lifeTextTexture;
     delete lifeTextSurface;
-    SDL_DestroyTexture(lifeTextTexture);
-    SDL_DestroyRenderer(renderer);
     IMG_Quit();
     TTF_Quit();
 }
@@ -77,7 +80,7 @@ void Renderer::Draw(Enemy* enemies[2])
     }
 }
 
-void Renderer::Draw(UI* ui)
+void Renderer::Draw(UI* ui, int width, int height)
 {
     int lifeWidth = ui-> life > 0 ? ui->width / 4 * ui->life : 0;
     SDL_Rect lifeDrawing = {ui->x, ui->y, lifeWidth, ui->height};
@@ -89,10 +92,19 @@ void Renderer::Draw(UI* ui)
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
     SDL_RenderDrawRect(renderer, &drawing);
 
-    lifeTextSurface = TTF_RenderText_Solid(lifeFont, std::to_string(ui->life).c_str(), *lifeFontColour);
+    lifeTextSurface = TTF_RenderText_Solid(lifeFont, std::to_string(ui->life).c_str(), {255, 255, 255, 255});
+    if (lifeTextSurface == NULL) {
+        printf("Surface creation failed. TTF_Error: %s\n", TTF_GetError());
+    }
+
     lifeTextTexture = SDL_CreateTextureFromSurface(renderer, lifeTextSurface);
-    SDL_Rect lifeTextDrawing = {0, 0, 100, 50};
+    if (lifeTextTexture == NULL) {
+        printf("Texture creation failed. SDL_Error: %s\n", SDL_GetError());
+    }
+
+    SDL_Rect lifeTextDrawing = {width - 132, 50, 100, 50};
     SDL_RenderCopy(renderer, lifeTextTexture, NULL, &lifeTextDrawing);
+    SDL_FreeSurface(lifeTextSurface);
 }
 
 void Renderer::ManageBullets(Enemy* enemies[2], Player& player, UI& ui)
@@ -117,13 +129,13 @@ void Renderer::ManageBullets(Enemy* enemies[2], Player& player, UI& ui)
     }
 }
 
-int Renderer::LoadFont(TTF_Font* font, const char* fontPath, int fontSize, SDL_Color* fontColour, SDL_Color colour)
+int Renderer::LoadFont(TTF_Font*& font, const char* fontPath, int fontSize)
 {
     font = TTF_OpenFont(fontPath, fontSize);
     if (font == NULL) {
         printf("SDL_tff could not load the font! TFF_Error: %s\n", TTF_GetError());
         return 1;
     }
-    fontColour = &colour;
+
     return 0;
 }

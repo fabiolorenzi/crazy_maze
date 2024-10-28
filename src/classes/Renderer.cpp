@@ -102,8 +102,9 @@ void Renderer::Draw(UI* ui, int width, int height)
         printf("Texture creation failed. SDL_Error: %s\n", SDL_GetError());
     }
 
-    SDL_Rect lifeTextDrawing = {width - 132, 50, 100, 50};
+    SDL_Rect lifeTextDrawing = {width - 132, 50, 50, 30};
     SDL_RenderCopy(renderer, lifeTextTexture, NULL, &lifeTextDrawing);
+    SDL_DestroyTexture(lifeTextTexture);
     SDL_FreeSurface(lifeTextSurface);
 }
 

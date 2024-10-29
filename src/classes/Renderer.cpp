@@ -102,8 +102,11 @@ void Renderer::Draw(UI* ui, int width, int height)
         printf("timeTextTexture creation failed. SDL_Error: %s\n", SDL_GetError());
     }
 
-    SDL_Rect lifeTextDrawing = {width - 102, 50, 50, 30};
-    SDL_RenderCopy(renderer, timeTextTexture, NULL, &lifeTextDrawing);
+    int timeTextLeftMargin = ui->time >= 10 ? 60 : 48;
+    int timeTextWidth = ui->time >= 10 ? 24 : 16;
+
+    SDL_Rect timeTextDrawing = {width - timeTextLeftMargin, 50, timeTextWidth, 24};
+    SDL_RenderCopy(renderer, timeTextTexture, NULL, &timeTextDrawing);
     SDL_DestroyTexture(timeTextTexture);
     SDL_FreeSurface(timeTextSurface);
 }

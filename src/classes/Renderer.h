@@ -26,7 +26,7 @@ class Renderer
         void ManageBullets(Enemy* enemies[2], Player& player, UI& ui);
         int LoadFont(TTF_Font*& font, const char* fontPath, int fontSize);
     private:
-        SDL_Surface* lifeTextSurface;
-        SDL_Texture* lifeTextTexture;
-        TTF_Font* lifeFont;
+        SDL_Surface* timeTextSurface;
+        SDL_Texture* timeTextTexture;
+        TTF_Font* timeFont;
 };

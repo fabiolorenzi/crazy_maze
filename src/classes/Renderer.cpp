@@ -17,7 +17,7 @@ Renderer::Renderer(SDL_Window* window)
         if (ttfFlags == -1) {
             printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
         }
-        LoadFont(lifeFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 28);
+        LoadFont(timeFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 24);
         if (!(IMG_Init(imgFlags) && imgFlags)) {
             printf("SDL_Image could not initialize! SDL_Error: %s\n", SDL_GetError());
         }
@@ -26,12 +26,12 @@ Renderer::Renderer(SDL_Window* window)
 
 Renderer::~Renderer()
 {
-    SDL_FreeSurface(lifeTextSurface);
-    SDL_DestroyTexture(lifeTextTexture);
+    SDL_FreeSurface(timeTextSurface);
+    SDL_DestroyTexture(timeTextTexture);
     SDL_DestroyRenderer(renderer);
-    delete lifeFont;
-    delete lifeTextTexture;
-    delete lifeTextSurface;
+    delete timeFont;
+    delete timeTextTexture;
+    delete timeTextSurface;
     IMG_Quit();
     TTF_Quit();
 }
@@ -92,20 +92,20 @@ void Renderer::Draw(UI* ui, int width, int height)
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
     SDL_RenderDrawRect(renderer, &drawing);
 
-    lifeTextSurface = TTF_RenderText_Solid(lifeFont, std::to_string(ui->life).c_str(), {255, 255, 255, 255});
-    if (lifeTextSurface == NULL) {
-        printf("Surface creation failed. TTF_Error: %s\n", TTF_GetError());
+    timeTextSurface = TTF_RenderText_Blended(timeFont, std::to_string(ui->time).c_str(), {255, 255, 255, 255});
+    if (timeTextSurface == NULL) {
+        printf("timeTextSurface creation failed. TTF_Error: %s\n", TTF_GetError());
     }
 
-    lifeTextTexture = SDL_CreateTextureFromSurface(renderer, lifeTextSurface);
-    if (lifeTextTexture == NULL) {
-        printf("Texture creation failed. SDL_Error: %s\n", SDL_GetError());
+    timeTextTexture = SDL_CreateTextureFromSurface(renderer, timeTextSurface);
+    if (timeTextTexture == NULL) {
+        printf("timeTextTexture creation failed. SDL_Error: %s\n", SDL_GetError());
     }
 
-    SDL_Rect lifeTextDrawing = {width - 132, 50, 50, 30};
-    SDL_RenderCopy(renderer, lifeTextTexture, NULL, &lifeTextDrawing);
-    SDL_DestroyTexture(lifeTextTexture);
-    SDL_FreeSurface(lifeTextSurface);
+    SDL_Rect lifeTextDrawing = {width - 102, 50, 50, 30};
+    SDL_RenderCopy(renderer, timeTextTexture, NULL, &lifeTextDrawing);
+    SDL_DestroyTexture(timeTextTexture);
+    SDL_FreeSurface(timeTextSurface);
 }
 
 void Renderer::ManageBullets(Enemy* enemies[2], Player& player, UI& ui)

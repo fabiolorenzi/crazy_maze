@@ -11,10 +11,10 @@ CatchableObject::CatchableObject(int _x, int _y, int _width, int _height, Object
     if (objectType == ObjectType::LifeObject) {
         r = 0xFF;
         g = 0x00;
-        b = 0x00;
+        b = 0xFF;
         a = 0xFF;
     } else {
-        r = 0xFF;
+        r = 0x00;
         g = 0xFF;
         b = 0x00;
         a = 0xFF;

@@ -30,7 +30,7 @@ void PopulateEnemiesInMazeArray(LevelNumber levelNumber, Enemy* enemiesArray[20]
 void PopulateObjectsInMazeArray(LevelNumber levelNumber, CatchableObject* objectsArray[10], int width, int height)
 {
     if (levelNumber == LevelNumber::LevelOne) {
-        objectsArray[0] = new CatchableObject(200, height - 150, 30, 30, ObjectType::LifeObject);
-        objectsArray[1] = new CatchableObject(width - 200, height - 150, 30, 30, ObjectType::TimeObject);
+        objectsArray[0] = new CatchableObject(200, height - 150, 40, 40, ObjectType::LifeObject);
+        objectsArray[1] = new CatchableObject(width - 200, height - 150, 40, 40, ObjectType::TimeObject);
     }
 }

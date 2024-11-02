@@ -14,18 +14,20 @@ class Level
     public:
         LevelNumber levelNumber;
         SDL_Texture* background;
+        Uint32 time;
+        int remainingTime;
 
         Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber levelNumber, int parentWidth, int parentHeight);
         ~Level();
         void RenderLevel();
         Player& GetPlayer();
         Maze& GetMaze();
+        UI& GetUI();
         void UpdateTime();
     private:
         int width, height;
-        Uint32 startTime, time;
+        Uint32 startTime;
         float currentSecond;
-        int remainingTime;
         Maze* maze;
         Player* player;
         UI* ui;

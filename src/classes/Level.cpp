@@ -104,6 +104,11 @@ Maze& Level::GetMaze()
 	return *maze;
 }
 
+UI& Level::GetUI()
+{
+	return *ui;
+}
+
 void Level::UpdateTime()
 {
 	time = SDL_GetTicks() - startTime;

@@ -51,6 +51,13 @@ int Window::Init()
 
 void Window::RenderElements()
 {
+	if (level->GetPlayer().hasToAddTime) {
+		level->remainingTime += 30;
+		level->GetPlayer().hasToAddTime = false;
+	}
+
+	level->GetUI().UpdateLife(level->GetPlayer().life);
+
 	gRenderer->Reset();
 
 	SDL_RenderCopy(gRenderer->renderer, level->background, NULL, NULL);

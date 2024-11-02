@@ -10,12 +10,14 @@ Window::Window()
 
 Window::~Window()
 {
-	delete level;
-	delete gRenderer;
+	// delete level;
+	// delete gRenderer;
     SDL_FreeSurface(gStretched);
 	gStretched = NULL;
 	SDL_DestroyWindow(gWindow);
 	gWindow = NULL;
+	delete level;
+	delete gRenderer;
 	SDL_Quit();
 }
 

@@ -54,6 +54,7 @@ void Level::RenderLevel()
 {
 	parentRenderer->Draw(maze->walls);
 	parentRenderer->Draw(maze->enemies);
+	parentRenderer->Draw(maze->objects);
 	parentRenderer->ManageBullets(maze->enemies, *player, *ui);
 	parentRenderer->Draw(player);
 	parentRenderer->Draw(ui, width, height);

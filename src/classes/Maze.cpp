@@ -8,6 +8,7 @@ Maze::Maze(LevelNumber _levelNumber, int parentWidth, int parentHeight)
 
     PopulateWallsInMazeArray(levelNumber, walls, width, height);
     PopulateEnemiesInMazeArray(levelNumber, enemies, width, height);
+    PopulateObjectsInMazeArray(levelNumber, objects, width, height);
 }
 
 Maze::~Maze()
@@ -18,6 +19,10 @@ Maze::~Maze()
 
     for (Wall* wall : walls) {
         if (wall) delete wall;
+    }
+
+    for (CatchableObject* obj : objects) {
+        if (obj) delete obj;
     }
 }
 
@@ -44,6 +49,15 @@ void Maze::MoveBullets(int movement)
     if (movement != 0) {
         for (Enemy* enemy : enemies) {
             enemy && enemy->bullet ? enemy->bullet->x += movement : NULL;
+        }
+    }
+}
+
+void Maze::MoveObjects(int movement)
+{
+    if (movement != 0) {
+        for (CatchableObject* obj : objects) {
+            obj ? obj->x += movement : NULL;
         }
     }
 }

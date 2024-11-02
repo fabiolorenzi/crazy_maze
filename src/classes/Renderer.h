@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include "CatchableObject.h"
 #include "Enemy.h"
 #include "Player.h"
 #include "Wall.h"
@@ -22,6 +23,7 @@ class Renderer
         void Draw(Player* player);
         void Draw(Wall* walls[4]);
         void Draw(Enemy* enemies[2]);
+        void Draw(CatchableObject* objects[2]);
         void Draw(UI* ui, int width, int height);
         void ManageBullets(Enemy* enemies[2], Player& player, UI& ui);
         int LoadFont(TTF_Font*& font, const char* fontPath, int fontSize);

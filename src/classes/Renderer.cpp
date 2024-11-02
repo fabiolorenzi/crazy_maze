@@ -80,6 +80,17 @@ void Renderer::Draw(Enemy* enemies[2])
     }
 }
 
+void Renderer::Draw(CatchableObject* objects[2])
+{
+    for (int x {}; x < 2; ++x) {
+        SDL_Rect drawing = {objects[x]->x, objects[x]->y, objects[x]->width, objects[x]->height};
+        SDL_SetRenderDrawColor(renderer, objects[x]->r, objects[x]->g, objects[x]->b, objects[x]->a);
+        SDL_RenderFillRect(renderer, &drawing);
+        SDL_SetRenderDrawColor(renderer, 0x0, 0x00, 0x00, 0x00);
+        SDL_RenderDrawRect(renderer, &drawing);
+    }
+}
+
 void Renderer::Draw(UI* ui, int width, int height)
 {
     int lifeWidth = ui-> life > 0 ? ui->width / 4 * ui->life : 0;

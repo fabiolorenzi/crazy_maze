@@ -145,4 +145,5 @@ void Level::EndGame()
 	isLevelFinished = true;
 	player->BlockPlayer();
 	ui->RemoveUI();
+	maze->RemoveMazeArrays();
 }

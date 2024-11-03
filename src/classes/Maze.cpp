@@ -68,3 +68,18 @@ void Maze::TriggerEnemies(int time)
         if (enemy) enemy->Shoot();
     }
 }
+
+void Maze::RemoveMazeArrays()
+{
+    for (Enemy* enemy : enemies) {
+        if (enemy) enemy->y += 3000;
+    }
+
+    for (Wall* wall : walls) {
+        if (wall) wall->y += 3000;
+    }
+
+    for (CatchableObject* obj : objects) {
+        if (obj) obj->y += 3000;
+    }
+}

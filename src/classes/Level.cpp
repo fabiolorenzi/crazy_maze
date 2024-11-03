@@ -14,7 +14,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 
 	if (levelNumber == LevelNumber::Menu) {
 		player = nullptr;
-		ui = nullptr;
+		gameUI = nullptr;
 		startTime = SDL_GetTicks();
 		time = startTime;
 	} else {
@@ -23,7 +23,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 		startTime = SDL_GetTicks();
 		time = startTime;
 		remainingTime = SetLevelInitialTimer(levelNumber);
-		ui = new UI(1000, 20, 250, 20, player->life, remainingTime);
+		gameUI = new GameUI(1000, 20, 250, 20, player->life, remainingTime);
 	}
 }
 
@@ -31,17 +31,19 @@ Level::~Level()
 {
 	delete player;
 	delete maze;
-	delete ui;
+	delete gameUI;
 }
 
 void Level::RenderLevel()
 {
-	parentRenderer->Draw(maze->walls);
-	parentRenderer->Draw(maze->enemies);
-	parentRenderer->Draw(maze->objects);
-	parentRenderer->ManageBullets(maze->enemies, *player, *ui);
-	parentRenderer->Draw(player);
-	parentRenderer->Draw(ui, width, height);
+	if (!isLevelFinished) {
+		parentRenderer->Draw(maze->walls);
+		parentRenderer->Draw(maze->enemies);
+		parentRenderer->Draw(maze->objects);
+		parentRenderer->ManageBullets(maze->enemies, *player, *gameUI);
+		parentRenderer->Draw(player);
+		parentRenderer->Draw(gameUI, width, height);
+	}
 }
 
 Player& Level::GetPlayer()
@@ -54,9 +56,9 @@ Maze& Level::GetMaze()
 	return *maze;
 }
 
-UI& Level::GetUI()
+GameUI& Level::GetGameUI()
 {
-	return *ui;
+	return *gameUI;
 }
 
 void Level::UpdateTime()
@@ -66,7 +68,7 @@ void Level::UpdateTime()
 	if ((time / 1000) >= currentSecond) {
 		currentSecond += 1.f;
 		remainingTime -= 1;
-		ui->UpdateTime(remainingTime);
+		gameUI->UpdateTime(remainingTime);
 		maze->TriggerEnemies((int)(time / 1000));
 	}
 }
@@ -144,6 +146,6 @@ void Level::EndGame()
 {
 	isLevelFinished = true;
 	player->BlockPlayer();
-	ui->RemoveUI();
+	gameUI->RemoveUI();
 	maze->RemoveMazeArrays();
 }

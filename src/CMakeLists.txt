@@ -9,12 +9,12 @@ target_sources(${PROJECT_NAME}
         classes/Bullet.cpp
         classes/CatchableObject.cpp
         classes/Enemy.cpp
+        classes/GameUI.cpp
         classes/Level.cpp
         classes/Maze.cpp
         classes/Player.cpp
         classes/Renderer.cpp
         classes/Timer.cpp
-        classes/UI.cpp
         classes/Wall.cpp
         classes/Window.cpp
         functions/KeysManager.cpp

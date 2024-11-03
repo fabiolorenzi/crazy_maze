@@ -53,7 +53,7 @@ void Window::RenderElements()
 {
 	UpdateRemainingTime();
 	gameResult = level->CheckIfGameFinished();
-	level->GetUI().UpdateLife(level->GetPlayer().life);
+	level->GetGameUI().UpdateLife(level->GetPlayer().life);
 
 	gRenderer->Reset();
 

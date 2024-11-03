@@ -5,7 +5,7 @@
 #include "Maze.h"
 #include "Player.h"
 #include "Renderer.h"
-#include "UI.h"
+#include "GameUI.h"
 #include "../enums/LevelNumber.h"
 #include "../enums/EndGameResults.h"
 #include "../functions/LevelElementsManager.h"
@@ -24,7 +24,7 @@ class Level
         void RenderLevel();
         Player& GetPlayer();
         Maze& GetMaze();
-        UI& GetUI();
+        GameUI& GetGameUI();
         void UpdateTime();
         EndGameResult CheckIfGameFinished();
     private:
@@ -34,7 +34,7 @@ class Level
         bool isLevelFinished;
         Maze* maze;
         Player* player;
-        UI* ui;
+        GameUI* gameUI;
         SDL_Surface* parentScreenSurface;
         Renderer* parentRenderer;
 

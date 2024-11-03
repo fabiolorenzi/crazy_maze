@@ -8,9 +8,9 @@
 #include <string>
 #include "CatchableObject.h"
 #include "Enemy.h"
+#include "GameUI.h"
 #include "Player.h"
 #include "Wall.h"
-#include "UI.h"
 
 class Renderer
 {
@@ -25,8 +25,8 @@ class Renderer
         void Draw(Wall* walls[4]);
         void Draw(Enemy* enemies[2]);
         void Draw(CatchableObject* objects[2]);
-        void Draw(UI* ui, int width, int height);
-        void ManageBullets(Enemy* enemies[2], Player& player, UI& ui);
+        void Draw(GameUI* gameUI, int width, int height);
+        void ManageBullets(Enemy* enemies[2], Player& player, GameUI& gameUI);
         int LoadFont(TTF_Font*& font, const char* fontPath, int fontSize);
     private:
         SDL_Surface* timeTextSurface;

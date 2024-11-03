@@ -91,11 +91,11 @@ void Renderer::Draw(CatchableObject* objects[2])
     }
 }
 
-void Renderer::Draw(UI* ui, int width, int height)
+void Renderer::Draw(GameUI* gameUI, int width, int height)
 {
-    int lifeWidth = ui->life > 0 ? ui->width / 4 * ui->life : 0;
-    SDL_Rect lifeDrawing = {ui->x, ui->y, lifeWidth, ui->height};
-    SDL_Rect drawing = {ui->x, ui->y, ui->width, ui->height};
+    int lifeWidth = gameUI->life > 0 ? gameUI->width / 4 * gameUI->life : 0;
+    SDL_Rect lifeDrawing = {gameUI->x, gameUI->y, lifeWidth, gameUI->height};
+    SDL_Rect drawing = {gameUI->x, gameUI->y, gameUI->width, gameUI->height};
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
     SDL_RenderFillRect(renderer, &drawing);
     SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF);
@@ -103,8 +103,8 @@ void Renderer::Draw(UI* ui, int width, int height)
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
     SDL_RenderDrawRect(renderer, &drawing);
 
-    if (ui->time > 0) {
-        timeTextSurface = TTF_RenderText_Blended(timeFont, std::to_string(ui->time).c_str(), {255, 255, 255, 255});
+    if (gameUI->time > 0) {
+        timeTextSurface = TTF_RenderText_Blended(timeFont, std::to_string(gameUI->time).c_str(), {255, 255, 255, 255});
         if (timeTextSurface == NULL) {
             printf("timeTextSurface creation failed. TTF_Error: %s\n", TTF_GetError());
         }
@@ -114,8 +114,8 @@ void Renderer::Draw(UI* ui, int width, int height)
             printf("timeTextTexture creation failed. SDL_Error: %s\n", SDL_GetError());
         }
 
-        int timeTextLeftMargin = ui->y <= 2500 ? (ui->time >= 10 ? 60 : 48) : 3000;
-        int timeTextWidth = ui->time >= 10 ? 24 : 16;
+        int timeTextLeftMargin = gameUI->y <= 2500 ? (gameUI->time >= 10 ? 60 : 48) : 3000;
+        int timeTextWidth = gameUI->time >= 10 ? 24 : 16;
 
         SDL_Rect timeTextDrawing = {width - timeTextLeftMargin, 50, timeTextWidth, 24};
         SDL_RenderCopy(renderer, timeTextTexture, NULL, &timeTextDrawing);
@@ -124,7 +124,7 @@ void Renderer::Draw(UI* ui, int width, int height)
     }
 }
 
-void Renderer::ManageBullets(Enemy* enemies[2], Player& player, UI& ui)
+void Renderer::ManageBullets(Enemy* enemies[2], Player& player, GameUI& gameUI)
 {
     for (int x {}; x < 2; ++x) {
         if (enemies[x]->bullet != nullptr) {
@@ -132,7 +132,7 @@ void Renderer::ManageBullets(Enemy* enemies[2], Player& player, UI& ui)
                 enemies[x]->bullet->Move();
                 bool hasPlayerBeingHit = player.CheckBulletCollisions(enemies[x]->bullet);
                 if (hasPlayerBeingHit) {
-                    ui.UpdateLife(player.life);
+                    gameUI.UpdateLife(player.life);
                 }
                 SDL_Rect drawing = {enemies[x]->bullet->x, enemies[x]->bullet->y, enemies[x]->bullet->width, enemies[x]->bullet->height};
                 SDL_SetRenderDrawColor(renderer, enemies[x]->bullet->r, enemies[x]->bullet->g, enemies[x]->bullet->b, enemies[x]->bullet->a);

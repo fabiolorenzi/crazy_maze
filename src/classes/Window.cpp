@@ -51,11 +51,8 @@ int Window::Init()
 
 void Window::RenderElements()
 {
-	if (level->GetPlayer().hasToAddTime) {
-		level->remainingTime += 30;
-		level->GetPlayer().hasToAddTime = false;
-	}
-
+	UpdateRemainingTime();
+	gameResult = level->CheckIfGameFinished();
 	level->GetUI().UpdateLife(level->GetPlayer().life);
 
 	gRenderer->Reset();
@@ -75,4 +72,12 @@ Player& Window::GetPlayerFromLevel()
 Maze& Window::GetMazeFromLevel()
 {
 	return level->GetMaze();
+}
+
+void Window::UpdateRemainingTime()
+{
+	if (level->GetPlayer().hasToAddTime) {
+		level->remainingTime += 30;
+		level->GetPlayer().hasToAddTime = false;
+	}
 }

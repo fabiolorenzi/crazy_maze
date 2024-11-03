@@ -19,3 +19,8 @@ void UI::UpdateTime(int newValue)
 {
     time = newValue;
 }
+
+void UI::RemoveUI()
+{
+    y = 3000;
+}

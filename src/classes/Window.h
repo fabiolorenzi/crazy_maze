@@ -7,6 +7,7 @@
 #include "Maze.h"
 #include "Player.h"
 #include "Renderer.h"
+#include "../enums/EndGameResults.h"
 #include "../enums/LevelNumber.h"
 
 class Window
@@ -23,9 +24,11 @@ class Window
     private:
         int width;
         int height;
+        EndGameResult gameResult;
         SDL_Window* gWindow;
         SDL_Surface* gStretched;
         Level* level;
 
         int Init();
+        void UpdateRemainingTime();
 };

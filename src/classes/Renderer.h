@@ -16,6 +16,7 @@ class Renderer
 {
     public:
         SDL_Renderer* renderer;
+        
         Renderer(SDL_Window* window);
         ~Renderer();
         void Reset();

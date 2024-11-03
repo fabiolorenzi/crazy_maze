@@ -19,32 +19,35 @@ Player::Player(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint
     movableRight = true;
     movableBottom = true;
     hasToAddTime = false;
+    isPlayerMovable = true;
 }
 
 void Player::Move(int moveIndex, Maze& maze)
 {
-    if (moveIndex == 1 && y - speed > 0) {
-        CheckMazeCollisions(maze, true, -speed);
-        CheckObjectCollisions(maze, true, -speed);
-        movableTop ? y -= speed : NULL;
-    } else if (moveIndex == 2 && y + speed + height < parentHeight) {
-        CheckMazeCollisions(maze, true, speed);
-        CheckObjectCollisions(maze, true, speed);
-        movableBottom ? y += speed : NULL;
-    } else if (moveIndex == 3) {
-        CheckMazeCollisions(maze, false, speed);
-        CheckObjectCollisions(maze, false, speed);
-        maze.MoveWalls(movableLeft ? speed : 0);
-        maze.MoveEnemies(movableLeft ? speed : 0);
-        maze.MoveBullets(movableLeft ? speed : 0);
-        maze.MoveObjects(movableLeft ? speed : 0);
-    } else if (moveIndex == 4) {
-        CheckMazeCollisions(maze, false, -speed);
-        CheckObjectCollisions(maze, false, -speed);
-        maze.MoveWalls(movableRight ? -speed : 0);
-        maze.MoveEnemies(movableRight ? -speed : 0);
-        maze.MoveBullets(movableRight ? -speed : 0);
-        maze.MoveObjects(movableRight? -speed : 0);
+    if (isPlayerMovable) {
+        if (moveIndex == 1 && y - speed > 0) {
+            CheckMazeCollisions(maze, true, -speed);
+            CheckObjectCollisions(maze, true, -speed);
+            movableTop ? y -= speed : NULL;
+        } else if (moveIndex == 2 && y + speed + height < parentHeight) {
+            CheckMazeCollisions(maze, true, speed);
+            CheckObjectCollisions(maze, true, speed);
+            movableBottom ? y += speed : NULL;
+        } else if (moveIndex == 3) {
+            CheckMazeCollisions(maze, false, speed);
+            CheckObjectCollisions(maze, false, speed);
+            maze.MoveWalls(movableLeft ? speed : 0);
+            maze.MoveEnemies(movableLeft ? speed : 0);
+            maze.MoveBullets(movableLeft ? speed : 0);
+            maze.MoveObjects(movableLeft ? speed : 0);
+        } else if (moveIndex == 4) {
+            CheckMazeCollisions(maze, false, -speed);
+            CheckObjectCollisions(maze, false, -speed);
+            maze.MoveWalls(movableRight ? -speed : 0);
+            maze.MoveEnemies(movableRight ? -speed : 0);
+            maze.MoveBullets(movableRight ? -speed : 0);
+            maze.MoveObjects(movableRight? -speed : 0);
+        }
     }
 }
 
@@ -222,4 +225,10 @@ bool Player::PlayerCatch(CatchableObject& obj)
     }
 
     return false;
+}
+
+void Player::BlockPlayer()
+{
+    isPlayerMovable = false;
+    y = 3000;
 }

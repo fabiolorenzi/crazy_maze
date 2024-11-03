@@ -12,4 +12,5 @@ class UI {
         UI(int _x, int _y, int _width, int _height, int _life, int _time);
         void UpdateLife(int newValue);
         void UpdateTime(int newValue);
+        void RemoveUI();
 };

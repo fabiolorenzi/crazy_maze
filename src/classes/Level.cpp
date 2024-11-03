@@ -8,6 +8,8 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 	width = parentWidth;
 	height = parentHeight;
 	currentSecond = 0.f;
+	isLevelFinished = false;
+	hasPlayerWon = false;
     SetBackground(levelNumber);
 
 	if (levelNumber == LevelNumber::Menu) {
@@ -32,6 +34,60 @@ Level::~Level()
 	delete ui;
 }
 
+void Level::RenderLevel()
+{
+	parentRenderer->Draw(maze->walls);
+	parentRenderer->Draw(maze->enemies);
+	parentRenderer->Draw(maze->objects);
+	parentRenderer->ManageBullets(maze->enemies, *player, *ui);
+	parentRenderer->Draw(player);
+	parentRenderer->Draw(ui, width, height);
+}
+
+Player& Level::GetPlayer()
+{
+	return *player;
+}
+
+Maze& Level::GetMaze()
+{
+	return *maze;
+}
+
+UI& Level::GetUI()
+{
+	return *ui;
+}
+
+void Level::UpdateTime()
+{
+	time = SDL_GetTicks() - startTime;
+
+	if ((time / 1000) >= currentSecond) {
+		currentSecond += 1.f;
+		remainingTime -= 1;
+		ui->UpdateTime(remainingTime);
+		maze->TriggerEnemies((int)(time / 1000));
+	}
+}
+
+EndGameResult Level::CheckIfGameFinished()
+{
+	if (hasPlayerWon) {
+		return EndGameResult::Victory;
+	} else if (remainingTime < 0 && !isLevelFinished) {
+		EndGame();
+		std::cout << "time finished" << std::endl;
+		return EndGameResult::TimeEnd;
+	} else if (player->life == 0 && !isLevelFinished) {
+		EndGame();
+		std::cout << "death" << std::endl;
+		return EndGameResult::LifeEnd;
+	}
+
+	return EndGameResult::Waiting;
+}
+
 void Level::SetBackground(LevelNumber level)
 {
 	switch (level) {
@@ -48,16 +104,6 @@ void Level::SetBackground(LevelNumber level)
 			background = LoadBackground("assets/backgrounds/background_three.png");
 			break;
 	}
-}
-
-void Level::RenderLevel()
-{
-	parentRenderer->Draw(maze->walls);
-	parentRenderer->Draw(maze->enemies);
-	parentRenderer->Draw(maze->objects);
-	parentRenderer->ManageBullets(maze->enemies, *player, *ui);
-	parentRenderer->Draw(player);
-	parentRenderer->Draw(ui, width, height);
 }
 
 SDL_Texture* Level::LoadBackground(std::string texturePath)
@@ -94,29 +140,9 @@ SDL_Surface* Level::LoadSurface(std::string imagePath)
 	return optimizedSurface;
 }
 
-Player& Level::GetPlayer()
+void Level::EndGame()
 {
-	return *player;
-}
-
-Maze& Level::GetMaze()
-{
-	return *maze;
-}
-
-UI& Level::GetUI()
-{
-	return *ui;
-}
-
-void Level::UpdateTime()
-{
-	time = SDL_GetTicks() - startTime;
-
-	if ((time / 1000) >= currentSecond) {
-		currentSecond += 1.f;
-		remainingTime -= 1;
-		ui->UpdateTime(remainingTime);
-		maze->TriggerEnemies((int)(time / 1000));
-	}
+	isLevelFinished = true;
+	player->BlockPlayer();
+	ui->RemoveUI();
 }

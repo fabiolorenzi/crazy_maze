@@ -93,7 +93,7 @@ void Renderer::Draw(CatchableObject* objects[2])
 
 void Renderer::Draw(UI* ui, int width, int height)
 {
-    int lifeWidth = ui-> life > 0 ? ui->width / 4 * ui->life : 0;
+    int lifeWidth = ui->life > 0 ? ui->width / 4 * ui->life : 0;
     SDL_Rect lifeDrawing = {ui->x, ui->y, lifeWidth, ui->height};
     SDL_Rect drawing = {ui->x, ui->y, ui->width, ui->height};
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
@@ -103,23 +103,25 @@ void Renderer::Draw(UI* ui, int width, int height)
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
     SDL_RenderDrawRect(renderer, &drawing);
 
-    timeTextSurface = TTF_RenderText_Blended(timeFont, std::to_string(ui->time).c_str(), {255, 255, 255, 255});
-    if (timeTextSurface == NULL) {
-        printf("timeTextSurface creation failed. TTF_Error: %s\n", TTF_GetError());
+    if (ui->time > 0) {
+        timeTextSurface = TTF_RenderText_Blended(timeFont, std::to_string(ui->time).c_str(), {255, 255, 255, 255});
+        if (timeTextSurface == NULL) {
+            printf("timeTextSurface creation failed. TTF_Error: %s\n", TTF_GetError());
+        }
+
+        timeTextTexture = SDL_CreateTextureFromSurface(renderer, timeTextSurface);
+        if (timeTextTexture == NULL) {
+            printf("timeTextTexture creation failed. SDL_Error: %s\n", SDL_GetError());
+        }
+
+        int timeTextLeftMargin = ui->y <= 2500 ? (ui->time >= 10 ? 60 : 48) : 3000;
+        int timeTextWidth = ui->time >= 10 ? 24 : 16;
+
+        SDL_Rect timeTextDrawing = {width - timeTextLeftMargin, 50, timeTextWidth, 24};
+        SDL_RenderCopy(renderer, timeTextTexture, NULL, &timeTextDrawing);
+        SDL_DestroyTexture(timeTextTexture);
+        SDL_FreeSurface(timeTextSurface);
     }
-
-    timeTextTexture = SDL_CreateTextureFromSurface(renderer, timeTextSurface);
-    if (timeTextTexture == NULL) {
-        printf("timeTextTexture creation failed. SDL_Error: %s\n", SDL_GetError());
-    }
-
-    int timeTextLeftMargin = ui->time >= 10 ? 60 : 48;
-    int timeTextWidth = ui->time >= 10 ? 24 : 16;
-
-    SDL_Rect timeTextDrawing = {width - timeTextLeftMargin, 50, timeTextWidth, 24};
-    SDL_RenderCopy(renderer, timeTextTexture, NULL, &timeTextDrawing);
-    SDL_DestroyTexture(timeTextTexture);
-    SDL_FreeSurface(timeTextSurface);
 }
 
 void Renderer::ManageBullets(Enemy* enemies[2], Player& player, UI& ui)

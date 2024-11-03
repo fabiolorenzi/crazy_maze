@@ -22,10 +22,12 @@ class Player
         void CheckMazeCollisions(Maze& maze, bool isVerticalMove, int movement);
         bool CheckBulletCollisions(Bullet* bullet);
         void CheckObjectCollisions(Maze& maze, bool isVerticalMove, int movement);
+        void BlockPlayer();
     private:
         int parentWidth, parentHeight;
         int speed;
         bool movableLeft, movableRight, movableTop, movableBottom;
+        bool isPlayerMovable;
         
         void CheckMoveCollision(bool isVerticalMove, int movement, int p_a_x, int p_a_y, int p_b_x, int p_b_y, int p_c_x, int p_c_y, int p_d_x, int p_d_y, int o_a_x, int o_a_y, int o_b_x, int o_b_y, int o_c_x, int o_c_y, int o_d_x, int o_d_y);
         bool CheckSingleObjectCollision(bool isVerticalMove, int movement, int p_a_x, int p_a_y, int p_b_x, int p_b_y, int p_c_x, int p_c_y, int p_d_x, int p_d_y, int o_a_x, int o_a_y, int o_b_x, int o_b_y, int o_c_x, int o_c_y, int o_d_x, int o_d_y);

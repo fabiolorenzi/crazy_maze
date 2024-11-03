@@ -7,6 +7,7 @@
 #include "Renderer.h"
 #include "UI.h"
 #include "../enums/LevelNumber.h"
+#include "../enums/EndGameResults.h"
 #include "../functions/LevelElementsManager.h"
 
 class Level
@@ -16,6 +17,7 @@ class Level
         SDL_Texture* background;
         Uint32 time;
         int remainingTime;
+        bool hasPlayerWon;
 
         Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber levelNumber, int parentWidth, int parentHeight);
         ~Level();
@@ -24,10 +26,12 @@ class Level
         Maze& GetMaze();
         UI& GetUI();
         void UpdateTime();
+        EndGameResult CheckIfGameFinished();
     private:
         int width, height;
         Uint32 startTime;
         float currentSecond;
+        bool isLevelFinished;
         Maze* maze;
         Player* player;
         UI* ui;
@@ -37,4 +41,5 @@ class Level
         void SetBackground(LevelNumber level);
         SDL_Texture* LoadBackground(std::string texturePath);
         SDL_Surface* LoadSurface(std::string imagePath);
+        void EndGame();
 };

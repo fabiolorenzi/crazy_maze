@@ -8,6 +8,7 @@ target_sources(${PROJECT_NAME}
         main.cpp
         classes/Bullet.cpp
         classes/CatchableObject.cpp
+        classes/EndGameUI.cpp
         classes/Enemy.cpp
         classes/GameUI.cpp
         classes/Level.cpp

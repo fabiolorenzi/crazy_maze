@@ -18,6 +18,7 @@ Renderer::Renderer(SDL_Window* window)
             printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
         }
         LoadFont(timeFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 24);
+        LoadFont(endGameFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 24);
         if (!(IMG_Init(imgFlags) && imgFlags)) {
             printf("SDL_Image could not initialize! SDL_Error: %s\n", SDL_GetError());
         }
@@ -28,10 +29,15 @@ Renderer::~Renderer()
 {
     SDL_FreeSurface(timeTextSurface);
     SDL_DestroyTexture(timeTextTexture);
+    SDL_FreeSurface(endGameTextSurface);
+    SDL_DestroyTexture(endGameTextTexture);
     SDL_DestroyRenderer(renderer);
     delete timeFont;
     delete timeTextTexture;
     delete timeTextSurface;
+    delete endGameFont;
+    delete endGameTextTexture;
+    delete endGameTextSurface;
     IMG_Quit();
     TTF_Quit();
 }
@@ -122,6 +128,26 @@ void Renderer::Draw(GameUI* gameUI, int width, int height)
         SDL_DestroyTexture(timeTextTexture);
         SDL_FreeSurface(timeTextSurface);
     }
+}
+
+void Renderer::Draw(EndGameUI* endGameUI, int width, int height, EndGameResult result)
+{
+    const char* resultText = result == EndGameResult::LifeEnd ? "You are dead" : result == EndGameResult::TimeEnd ? "Time is finished" : "You have won";
+    SDL_Color resultColour = {result == EndGameResult::Victory ? 255 : 0, result == EndGameResult::Victory ? 0 : 255, 0, 255};
+    endGameTextSurface = TTF_RenderText_Blended(endGameFont, resultText, resultColour);
+    if (endGameTextSurface == NULL) {
+        printf("endGameTextSurface creation failed. TTF_Error: %s\n", TTF_GetError());
+    }
+
+    endGameTextTexture = SDL_CreateTextureFromSurface(renderer, endGameTextSurface);
+    if (endGameTextTexture == NULL) {
+        printf("endGameTextTexture creation failed. SDL_Error: %s\n", SDL_GetError());
+    }
+
+    SDL_Rect endGameTextDrawing = {width / 2, 50, 24, 24};
+    SDL_RenderCopy(renderer, endGameTextTexture, NULL, &endGameTextDrawing);
+    SDL_DestroyTexture(endGameTextTexture);
+    SDL_FreeSurface(endGameTextSurface);
 }
 
 void Renderer::ManageBullets(Enemy* enemies[2], Player& player, GameUI& gameUI)

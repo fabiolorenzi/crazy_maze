@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <iostream>
+#include "EndGameUI.h"
 #include "Maze.h"
 #include "Player.h"
 #include "Renderer.h"
@@ -21,7 +22,7 @@ class Level
 
         Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber levelNumber, int parentWidth, int parentHeight);
         ~Level();
-        void RenderLevel();
+        void RenderLevel(EndGameResult result);
         Player& GetPlayer();
         Maze& GetMaze();
         GameUI& GetGameUI();
@@ -35,6 +36,7 @@ class Level
         Maze* maze;
         Player* player;
         GameUI* gameUI;
+        EndGameUI* endGameUI;
         SDL_Surface* parentScreenSurface;
         Renderer* parentRenderer;
 

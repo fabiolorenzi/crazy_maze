@@ -58,7 +58,7 @@ void Window::RenderElements()
 	gRenderer->Reset();
 
 	SDL_RenderCopy(gRenderer->renderer, level->background, NULL, NULL);
-	level->RenderLevel();
+	level->RenderLevel(gameResult);
 	level->UpdateTime();
 
 	SDL_RenderPresent(gRenderer->renderer);

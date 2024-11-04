@@ -32,9 +32,10 @@ Level::~Level()
 	delete player;
 	delete maze;
 	delete gameUI;
+	if (endGameUI) delete endGameUI;
 }
 
-void Level::RenderLevel()
+void Level::RenderLevel(EndGameResult result)
 {
 	if (!isLevelFinished) {
 		parentRenderer->Draw(maze->walls);
@@ -43,6 +44,9 @@ void Level::RenderLevel()
 		parentRenderer->ManageBullets(maze->enemies, *player, *gameUI);
 		parentRenderer->Draw(player);
 		parentRenderer->Draw(gameUI, width, height);
+		if (result != EndGameResult::Waiting) {
+			parentRenderer->Draw(endGameUI, width, height, result);
+		}
 	}
 }
 
@@ -148,4 +152,5 @@ void Level::EndGame()
 	player->BlockPlayer();
 	gameUI->RemoveUI();
 	maze->RemoveMazeArrays();
+	endGameUI = new EndGameUI(0, 0, width, height);
 }

@@ -130,11 +130,9 @@ void Renderer::Draw(GameUI* gameUI, int width, int height)
     }
 }
 
-void Renderer::Draw(EndGameUI* endGameUI, int width, int height, EndGameResult result)
+void Renderer::Draw(EndGameUI* endGameUI, int width, int height)
 {
-    const char* resultText = result == EndGameResult::LifeEnd ? "You are dead" : result == EndGameResult::TimeEnd ? "Time is finished" : "You have won";
-    SDL_Color resultColour = {result == EndGameResult::Victory ? 255 : 0, result == EndGameResult::Victory ? 0 : 255, 0, 255};
-    endGameTextSurface = TTF_RenderText_Blended(endGameFont, resultText, resultColour);
+    endGameTextSurface = TTF_RenderText_Blended(endGameFont, endGameUI->message.c_str(), endGameUI->textColour);
     if (endGameTextSurface == NULL) {
         printf("endGameTextSurface creation failed. TTF_Error: %s\n", TTF_GetError());
     }

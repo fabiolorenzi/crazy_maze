@@ -33,6 +33,7 @@ class Level
         Uint32 startTime;
         float currentSecond;
         bool isLevelFinished;
+        EndGameResult result;
         Maze* maze;
         Player* player;
         GameUI* gameUI;

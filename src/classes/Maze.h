@@ -22,7 +22,6 @@ class Maze
         void MoveBullets(int movement);
         void MoveObjects(int movement);
         void TriggerEnemies(int time);
-        void RemoveMazeArrays();
     private:
         LevelNumber levelNumber;
         int width, height;

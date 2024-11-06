@@ -19,8 +19,3 @@ void GameUI::UpdateTime(int newValue)
 {
     time = newValue;
 }
-
-void GameUI::RemoveUI()
-{
-    y = 3000;
-}

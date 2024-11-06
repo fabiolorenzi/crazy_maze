@@ -33,7 +33,6 @@ class Level
         Uint32 startTime;
         float currentSecond;
         bool isLevelFinished;
-        EndGameResult result;
         Maze* maze;
         Player* player;
         GameUI* gameUI;
@@ -44,5 +43,5 @@ class Level
         void SetBackground(LevelNumber level);
         SDL_Texture* LoadBackground(std::string texturePath);
         SDL_Surface* LoadSurface(std::string imagePath);
-        void EndGame();
+        void EndGame(EndGameResult result);
 };

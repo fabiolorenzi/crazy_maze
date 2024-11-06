@@ -44,9 +44,8 @@ void Level::RenderLevel(EndGameResult result)
 		parentRenderer->ManageBullets(maze->enemies, *player, *gameUI);
 		parentRenderer->Draw(player);
 		parentRenderer->Draw(gameUI, width, height);
-		if (result != EndGameResult::Waiting) {
-			parentRenderer->Draw(endGameUI, width, height);
-		}
+	} else {
+		parentRenderer->Draw(endGameUI, width, height);
 	}
 }
 
@@ -80,17 +79,14 @@ void Level::UpdateTime()
 EndGameResult Level::CheckIfGameFinished()
 {
 	if (hasPlayerWon) {
-		result = EndGameResult::Victory;
 		return EndGameResult::Victory;
 	} else if (remainingTime < 0 && !isLevelFinished) {
 		std::cout << "time finished" << std::endl;
-		result = EndGameResult::TimeEnd;
-		EndGame();
+		EndGame(EndGameResult::TimeEnd);
 		return EndGameResult::TimeEnd;
 	} else if (player->life == 0 && !isLevelFinished) {
 		std::cout << "death" << std::endl;
-		result = EndGameResult::LifeEnd;
-		EndGame();
+		EndGame(EndGameResult::LifeEnd);
 		return EndGameResult::LifeEnd;
 	}
 
@@ -149,11 +145,9 @@ SDL_Surface* Level::LoadSurface(std::string imagePath)
 	return optimizedSurface;
 }
 
-void Level::EndGame()
+void Level::EndGame(EndGameResult result)
 {
 	isLevelFinished = true;
 	player->BlockPlayer();
-	gameUI->RemoveUI();
-	maze->RemoveMazeArrays();
 	endGameUI = new EndGameUI(0, 0, width, height, result);
 }

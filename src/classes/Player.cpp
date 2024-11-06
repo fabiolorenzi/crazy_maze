@@ -230,5 +230,4 @@ bool Player::PlayerCatch(CatchableObject& obj)
 void Player::BlockPlayer()
 {
     isPlayerMovable = false;
-    y = 3000;
 }

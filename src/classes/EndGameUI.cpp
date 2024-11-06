@@ -18,4 +18,13 @@ EndGameUI::EndGameUI(int _x, int _y, int _width, int _height, EndGameResult _res
         textColour = {255, 0, 0, 255};
         message = "Time finished";
     }
+
+    restartButton = new Button(width / 2 - 100, height / 2 - 100, width / 2 - 80, height / 2 - 80, width, height, {255, 255, 255, 255}, {0, 0, 0, 255}, "Restart");
+    menuButton = new Button(width / 2 - 100, height / 2, width / 2 - 80, height / 2 - 80, width, height, {255, 255, 255, 255}, {0, 0, 0, 255}, "Menu");
+}
+
+EndGameUI::~EndGameUI()
+{
+    delete restartButton;
+    delete menuButton;
 }

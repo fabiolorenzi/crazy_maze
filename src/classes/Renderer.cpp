@@ -19,6 +19,7 @@ Renderer::Renderer(SDL_Window* window)
         }
         LoadFont(timeFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 24);
         LoadFont(endGameFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 48);
+        LoadFont(buttonFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 32);
         if (!(IMG_Init(imgFlags) && imgFlags)) {
             printf("SDL_Image could not initialize! SDL_Error: %s\n", SDL_GetError());
         }
@@ -38,6 +39,9 @@ Renderer::~Renderer()
     delete endGameFont;
     delete endGameTextTexture;
     delete endGameTextSurface;
+    delete buttonFont;
+    delete buttonTextTexture;
+    delete buttonTextSurface;
     IMG_Quit();
     TTF_Quit();
 }
@@ -146,6 +150,27 @@ void Renderer::Draw(EndGameUI* endGameUI, int width, int height)
     SDL_RenderCopy(renderer, endGameTextTexture, NULL, &endGameTextDrawing);
     SDL_DestroyTexture(endGameTextTexture);
     SDL_FreeSurface(endGameTextSurface);
+
+    Draw(endGameUI->restartButton, width, height);
+    Draw(endGameUI->menuButton, width, height);
+}
+
+void Renderer::Draw(Button* button, int width, int height)
+{
+    buttonTextSurface = TTF_RenderText_Blended(buttonFont, button->text.c_str(), button->textColour);
+    if (buttonTextSurface == NULL) {
+        printf("buttonTextSurface creation failed. TTF_Error: %s\n", TTF_GetError());
+    }
+
+    buttonTextTexture = SDL_CreateTextureFromSurface(renderer, buttonTextSurface);
+    if (buttonTextTexture == NULL) {
+        printf("buttonTextTexture creation failed. SDL_Error: %s\n", SDL_GetError());
+    }
+
+    SDL_Rect buttonTextDrawing = {button->textX, button->textY, 200, 32};
+    SDL_RenderCopy(renderer, buttonTextTexture, NULL, &buttonTextDrawing);
+    SDL_DestroyTexture(buttonTextTexture);
+    SDL_FreeSurface(buttonTextSurface);
 }
 
 void Renderer::ManageBullets(Enemy* enemies[2], Player& player, GameUI& gameUI)

@@ -18,7 +18,7 @@ Renderer::Renderer(SDL_Window* window)
             printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
         }
         LoadFont(timeFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 24);
-        LoadFont(endGameFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 24);
+        LoadFont(endGameFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 48);
         if (!(IMG_Init(imgFlags) && imgFlags)) {
             printf("SDL_Image could not initialize! SDL_Error: %s\n", SDL_GetError());
         }
@@ -142,7 +142,7 @@ void Renderer::Draw(EndGameUI* endGameUI, int width, int height)
         printf("endGameTextTexture creation failed. SDL_Error: %s\n", SDL_GetError());
     }
 
-    SDL_Rect endGameTextDrawing = {width / 2, height / 2, 200, 24};
+    SDL_Rect endGameTextDrawing = {width / 2 - 100, height / 2 - 160, 200, 48};
     SDL_RenderCopy(renderer, endGameTextTexture, NULL, &endGameTextDrawing);
     SDL_DestroyTexture(endGameTextTexture);
     SDL_FreeSurface(endGameTextSurface);

@@ -10,12 +10,12 @@ EndGameUI::EndGameUI(int _x, int _y, int _width, int _height, EndGameResult _res
 
     if (result == EndGameResult::Victory) {
         textColour = {0, 255, 0, 255};
-        message = "You won";
+        message = "You have won";
     } else if (result == EndGameResult::LifeEnd) {
         textColour = {255, 0, 0, 255};
         message = "You are dead";
     } else if (result == EndGameResult::TimeEnd) {
         textColour = {255, 0, 0, 255};
-        message = "The time is finished";
+        message = "Time finished";
     }
 }

@@ -113,7 +113,7 @@ void Renderer::Draw(GameUI* gameUI, int width, int height)
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
     SDL_RenderDrawRect(renderer, &drawing);
 
-    if (gameUI->time > 0) {
+    if (gameUI->time >= 0) {
         timeTextSurface = TTF_RenderText_Blended(timeFont, std::to_string(gameUI->time).c_str(), {255, 255, 255, 255});
         if (timeTextSurface == NULL) {
             printf("timeTextSurface creation failed. TTF_Error: %s\n", TTF_GetError());

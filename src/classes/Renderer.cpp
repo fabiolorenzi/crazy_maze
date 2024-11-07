@@ -96,7 +96,7 @@ void Renderer::Draw(CatchableObject* objects[2])
         SDL_Rect drawing = {objects[x]->x, objects[x]->y, objects[x]->width, objects[x]->height};
         SDL_SetRenderDrawColor(renderer, objects[x]->r, objects[x]->g, objects[x]->b, objects[x]->a);
         SDL_RenderFillRect(renderer, &drawing);
-        SDL_SetRenderDrawColor(renderer, 0x0, 0x00, 0x00, 0x00);
+        SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
         SDL_RenderDrawRect(renderer, &drawing);
     }
 }
@@ -157,6 +157,12 @@ void Renderer::Draw(EndGameUI* endGameUI, int width, int height)
 
 void Renderer::Draw(Button* button, int width, int height)
 {
+    SDL_Rect drawing = {button->x, button->y, button->width, button->height};
+    SDL_SetRenderDrawColor(renderer, button->backgroundColour.r, button->backgroundColour.g, button->backgroundColour.b, button->backgroundColour.a);
+    SDL_RenderFillRect(renderer, &drawing);
+    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
+    SDL_RenderDrawRect(renderer, &drawing);
+
     buttonTextSurface = TTF_RenderText_Blended(buttonFont, button->text.c_str(), button->textColour);
     if (buttonTextSurface == NULL) {
         printf("buttonTextSurface creation failed. TTF_Error: %s\n", TTF_GetError());

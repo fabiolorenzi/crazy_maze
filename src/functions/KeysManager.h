@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include "../classes/Window.h"
+#include "../enums/EndGameResults.h"
 
 enum KeyCodes {
     KEY_PRESS_SURFACE_DEFAULT,
@@ -11,5 +12,5 @@ enum KeyCodes {
 	KEY_PRESS_SURFACE_RIGHT
 };
 
-void LoopEvent(bool& isRunning, Window* window);
+void LoopEvent(bool& isRunning, Window*& window, EndGameResult result);
 int KeyDownManager(SDL_Event e);

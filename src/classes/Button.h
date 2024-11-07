@@ -11,4 +11,5 @@ class Button {
         std::string text;
 
         Button(int _x, int _y, int _textX, int _textY, int _width, int _height, SDL_Color _textColour, SDL_Color _backgroundColour, std::string _text);
+        void CheckIfClicked(int mouseX, int mouseY);
 };

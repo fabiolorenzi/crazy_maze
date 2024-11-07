@@ -64,6 +64,11 @@ GameUI& Level::GetGameUI()
 	return *gameUI;
 }
 
+EndGameUI& Level::GetEndGameUI()
+{
+	return *endGameUI;
+}
+
 void Level::UpdateTime()
 {
 	time = SDL_GetTicks() - startTime;
@@ -76,10 +81,12 @@ void Level::UpdateTime()
 	}
 }
 
-EndGameResult Level::CheckIfGameFinished()
+EndGameResult Level::CheckIfGameFinished(EndGameResult initial)
 {
 	if (hasPlayerWon) {
 		return EndGameResult::Victory;
+	} else if (!isLevelFinished && remainingTime > 0 && player->life > 0) {
+		return EndGameResult::Waiting;
 	} else if (remainingTime < 0 && !isLevelFinished) {
 		std::cout << "time finished" << std::endl;
 		EndGame(EndGameResult::TimeEnd);
@@ -90,7 +97,7 @@ EndGameResult Level::CheckIfGameFinished()
 		return EndGameResult::LifeEnd;
 	}
 
-	return EndGameResult::Waiting;
+	return initial;
 }
 
 void Level::SetBackground(LevelNumber level)
@@ -150,4 +157,5 @@ void Level::EndGame(EndGameResult result)
 	isLevelFinished = true;
 	player->BlockPlayer();
 	endGameUI = new EndGameUI(0, 0, width, height, result);
+	std::cout << "result here: " << result << std::endl;
 }

@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <iostream>
+#include "EndGameUI.h"
 #include "Level.h"
 #include "Maze.h"
 #include "Player.h"
@@ -15,16 +16,18 @@ class Window
     public:
         SDL_Surface* gScreenSurface;
         Renderer* gRenderer;
+        EndGameResult gameResult;
         
         Window();
         ~Window();
         void RenderElements();
+        Level& GetLevel();
         Player& GetPlayerFromLevel();
         Maze& GetMazeFromLevel();
+        EndGameUI& GetEndGameUIFromLevel();
     private:
         int width;
         int height;
-        EndGameResult gameResult;
         SDL_Window* gWindow;
         SDL_Surface* gStretched;
         Level* level;

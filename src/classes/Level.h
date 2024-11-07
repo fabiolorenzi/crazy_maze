@@ -26,8 +26,9 @@ class Level
         Player& GetPlayer();
         Maze& GetMaze();
         GameUI& GetGameUI();
+        EndGameUI& GetEndGameUI();
         void UpdateTime();
-        EndGameResult CheckIfGameFinished();
+        EndGameResult CheckIfGameFinished(EndGameResult initial);
     private:
         int width, height;
         Uint32 startTime;

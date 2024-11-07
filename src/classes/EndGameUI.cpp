@@ -28,3 +28,9 @@ EndGameUI::~EndGameUI()
     delete restartButton;
     delete menuButton;
 }
+
+void EndGameUI::CheckIfButtonsAreClicked(int mouseX, int mouseY)
+{
+    restartButton->CheckIfClicked(mouseX, mouseY);
+    menuButton->CheckIfClicked(mouseX, mouseY);
+}

@@ -12,3 +12,12 @@ Button::Button(int _x, int _y, int _textX, int _textY, int _width, int _height, 
     backgroundColour = _backgroundColour;
     text = _text;
 }
+
+void Button::CheckIfClicked(int mouseX, int mouseY)
+{
+    if ((mouseX > x && mouseX < x + width) && (mouseY > y && mouseY < y + height)) {
+        std::cout << "clicked inside" << std::endl;
+    } else {
+        std::cout << "clicked outside" << std::endl;
+    }
+}

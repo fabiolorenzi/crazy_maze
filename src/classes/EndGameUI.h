@@ -17,4 +17,5 @@ class EndGameUI {
 
         EndGameUI(int _x, int _y, int _width, int _height, EndGameResult _result);
         ~EndGameUI();
+        void CheckIfButtonsAreClicked(int mouseX, int mouseY);
 };

@@ -4,6 +4,7 @@ Window::Window()
 {
     width = 1280;
     height = 720;
+	gameResult = EndGameResult::Waiting;
 
     Init();
 }
@@ -52,7 +53,7 @@ int Window::Init()
 void Window::RenderElements()
 {
 	UpdateRemainingTime();
-	gameResult = level->CheckIfGameFinished();
+	gameResult = level->CheckIfGameFinished(gameResult);
 	level->GetGameUI().UpdateLife(level->GetPlayer().life);
 
 	gRenderer->Reset();
@@ -64,6 +65,11 @@ void Window::RenderElements()
 	SDL_RenderPresent(gRenderer->renderer);
 }
 
+Level& Window::GetLevel()
+{
+	return *level;
+}
+
 Player& Window::GetPlayerFromLevel()
 {
 	return level->GetPlayer();
@@ -72,6 +78,11 @@ Player& Window::GetPlayerFromLevel()
 Maze& Window::GetMazeFromLevel()
 {
 	return level->GetMaze();
+}
+
+EndGameUI& Window::GetEndGameUIFromLevel()
+{
+	return level->GetEndGameUI();
 }
 
 void Window::UpdateRemainingTime()

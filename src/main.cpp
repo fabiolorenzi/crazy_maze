@@ -15,7 +15,7 @@ int main()
     while (isRunning) {
         timer->ResetStartLoop();
 
-        LoopEvent(isRunning, window);
+        LoopEvent(isRunning, window, window->gameResult);
 
         window->RenderElements();
         timer->BalanceFPS();

@@ -1,0 +1,10 @@
+#pragma once
+
+enum ButtonType {
+    MENU_BUTTON,
+    LEVEL_ONE_BUTTON,
+    LEVEL_TWO_BUTTON,
+    LEVEL_THREE_BUTTON,
+    RESTART_BUTTON,
+    QUIT_BUTTON
+};

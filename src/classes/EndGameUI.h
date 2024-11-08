@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <iostream>
 #include "Button.h"
+#include "../enums/ButtonTypes.h"
 #include "../enums/EndGameResults.h"
 
 class EndGameUI {

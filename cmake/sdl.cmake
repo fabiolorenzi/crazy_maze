@@ -51,6 +51,16 @@ math(EXPR DELTASDL_image "${AFTER} - ${BEFORE}")
 MESSAGE(STATUS "SDL_image TIME: ${DELTASDL_image}s")
 
 string(TIMESTAMP BEFORE "%s")
+CPMAddPackage(GITHUB_REPOSITORY libsdl-org/SDL_mixer
+        GIT_TAG release-2.8.0
+)
+find_package(SDL_mixer REQUIRED)
+include_directories(${SDL_mixer_SOURCE_DIR})
+string(TIMESTAMP AFTER "%s")
+math(EXPR DELTASDL_mixer "${AFTER} - ${BEFORE}")
+MESSAGE(STATUS "SDL_mixer TIME: ${DELTASDL_mixer}s")
+
+string(TIMESTAMP BEFORE "%s")
 CPMAddPackage(GITHUB_REPOSITORY libsdl-org/SDL_ttf
         GIT_TAG release-2.22.0
 )

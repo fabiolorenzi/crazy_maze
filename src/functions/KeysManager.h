@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "../classes/Window.h"
 #include "../enums/EndGameResults.h"
+#include "../enums/LevelNumber.h"
 
 enum KeyCodes {
     KEY_PRESS_SURFACE_DEFAULT,

@@ -25,6 +25,7 @@ class Window
         Player& GetPlayerFromLevel();
         Maze& GetMazeFromLevel();
         EndGameUI& GetEndGameUIFromLevel();
+        void SetLevel(LevelNumber newLevel);
     private:
         int width;
         int height;

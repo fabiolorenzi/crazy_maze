@@ -12,7 +12,10 @@ void LoopEvent(bool& isRunning, Window*& window, EndGameResult result)
             window->GetPlayerFromLevel().Move(0, window->GetMazeFromLevel());
         } else if (e.type == SDL_MOUSEBUTTONUP) {
             if (result != EndGameResult::Waiting) {
-                window->GetEndGameUIFromLevel().CheckIfButtonsAreClicked(e.button.x, e.button.y);
+                LevelNumber newLevel = window->GetEndGameUIFromLevel().CheckIfButtonsAreClicked(e.button.x, e.button.y);
+                if (newLevel != LevelNumber::None) {
+                    window->SetLevel(newLevel);
+                }
             }
         }
     }

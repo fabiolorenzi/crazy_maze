@@ -157,5 +157,4 @@ void Level::EndGame(EndGameResult result)
 	isLevelFinished = true;
 	player->BlockPlayer();
 	endGameUI = new EndGameUI(0, 0, width, height, result);
-	std::cout << "result here: " << result << std::endl;
 }

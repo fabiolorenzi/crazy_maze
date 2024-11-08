@@ -14,31 +14,38 @@ Button::Button(int _x, int _y, int _textX, int _textY, int _width, int _height, 
     type = _type;
 }
 
-void Button::CheckIfClicked(int mouseX, int mouseY)
+LevelNumber Button::CheckIfClicked(int mouseX, int mouseY)
 {
     if ((mouseX > x && mouseX < x + width) && (mouseY > y && mouseY < y + height)) {
-        OnClick();
+        return OnClick();
     }
+
+    return LevelNumber::None;
 }
 
-void Button::OnClick()
+LevelNumber Button::OnClick()
 {
+    LevelNumber newLevel = LevelNumber::None;
     switch (type) {
         case ButtonType::MENU_BUTTON:
-            MenuButtonFunction();
+            newLevel = MenuButtonFunction();
             break;
         case ButtonType::RESTART_BUTTON:
-            RestartButtonFunction();
+            newLevel = RestartButtonFunction();
             break;
     }
+
+    return newLevel;
 }
 
-void Button::MenuButtonFunction()
+LevelNumber Button::MenuButtonFunction()
 {
     std::cout << "menu button" << std::endl;
+    return LevelNumber::Menu;
 }
 
-void Button::RestartButtonFunction()
+LevelNumber Button::RestartButtonFunction()
 {
     std::cout << "restart button" << std::endl;
+    return LevelNumber::LevelOne;
 }

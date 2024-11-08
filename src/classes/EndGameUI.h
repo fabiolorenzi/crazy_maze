@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "../enums/ButtonTypes.h"
 #include "../enums/EndGameResults.h"
+#include "../enums/LevelNumber.h"
 
 class EndGameUI {
     public:
@@ -18,5 +19,5 @@ class EndGameUI {
 
         EndGameUI(int _x, int _y, int _width, int _height, EndGameResult _result);
         ~EndGameUI();
-        void CheckIfButtonsAreClicked(int mouseX, int mouseY);
+        LevelNumber CheckIfButtonsAreClicked(int mouseX, int mouseY);
 };

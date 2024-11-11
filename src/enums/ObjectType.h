@@ -2,5 +2,6 @@
 
 enum ObjectType {
     LifeObject,
-    TimeObject
+    TimeObject,
+    VictoryObject
 };

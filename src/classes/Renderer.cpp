@@ -90,9 +90,9 @@ void Renderer::Draw(Enemy* enemies[2])
     }
 }
 
-void Renderer::Draw(CatchableObject* objects[2])
+void Renderer::Draw(CatchableObject* objects[3])
 {
-    for (int x {}; x < 2; ++x) {
+    for (int x {}; x < 3; ++x) {
         SDL_Rect drawing = {objects[x]->x, objects[x]->y, objects[x]->width, objects[x]->height};
         SDL_SetRenderDrawColor(renderer, objects[x]->r, objects[x]->g, objects[x]->b, objects[x]->a);
         SDL_RenderFillRect(renderer, &drawing);

@@ -26,7 +26,7 @@ class Renderer
         void Draw(Player* player);
         void Draw(Wall* walls[4]);
         void Draw(Enemy* enemies[2]);
-        void Draw(CatchableObject* objects[2]);
+        void Draw(CatchableObject* objects[3]);
         void Draw(GameUI* gameUI, int width, int height);
         void Draw(EndGameUI* endGameUI, int width, int height);
         void Draw(Button* button, int width, int height);

@@ -19,6 +19,7 @@ Player::Player(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint
     movableRight = true;
     movableBottom = true;
     hasToAddTime = false;
+    hasPlayerWon = false;
     isPlayerMovable = true;
     audioManager = _audioManager;
 }
@@ -230,6 +231,9 @@ bool Player::PlayerCatch(CatchableObject& obj)
     } else if (obj.objectType == ObjectType::TimeObject) {
         hasToAddTime = true;
         audioManager->PlaySound(SoundType::CATCH_TIME);
+        return true;
+    } else if (obj.objectType == ObjectType::VictoryObject) {
+        hasPlayerWon = true;
         return true;
     }
 

@@ -32,5 +32,6 @@ void PopulateObjectsInMazeArray(LevelNumber levelNumber, CatchableObject* object
     if (levelNumber == LevelNumber::LevelOne) {
         objectsArray[0] = new CatchableObject(200, height - 150, 40, 40, ObjectType::LifeObject);
         objectsArray[1] = new CatchableObject(width - 200, height - 150, 40, 40, ObjectType::TimeObject);
+        objectsArray[2] = new CatchableObject(width - 250, height - 450, 40, 40, ObjectType::VictoryObject);
     }
 }

@@ -89,17 +89,14 @@ EndGameResult Level::CheckIfGameFinished(EndGameResult initial)
 {
 	hasPlayerWon = player->hasPlayerWon;
 	if (hasPlayerWon && !isLevelFinished) {
-		std::cout << "victory" << std::endl;
 		EndGame(EndGameResult::Victory);
 		return EndGameResult::Victory;
 	} else if (!isLevelFinished && remainingTime > 0 && player->life > 0) {
 		return EndGameResult::Waiting;
 	} else if (remainingTime < 0 && !isLevelFinished) {
-		std::cout << "time finished" << std::endl;
 		EndGame(EndGameResult::TimeEnd);
 		return EndGameResult::TimeEnd;
 	} else if (player->life == 0 && !isLevelFinished) {
-		std::cout << "death" << std::endl;
 		EndGame(EndGameResult::LifeEnd);
 		return EndGameResult::LifeEnd;
 	}

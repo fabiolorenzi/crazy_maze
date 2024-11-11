@@ -3,7 +3,7 @@
 unsigned int SetLevelInitialTimer(LevelNumber levelNumber)
 {
     if (levelNumber == LevelNumber::LevelOne) {
-        return 5;
+        return 15;
     }
     
     return 0;

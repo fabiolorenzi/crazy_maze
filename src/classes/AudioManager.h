@@ -2,12 +2,15 @@
 
 #include <SDL_mixer.h>
 #include <iostream>
+#include "../enums/SoundTypes.h"
 
 class AudioManager
 {
     public:
         AudioManager();
         ~AudioManager();
+        void PlayBackgroundMusic();
+        void PlaySound(SoundType sound);
     private:
         Mix_Music* background_music;
         Mix_Chunk* catch_life;

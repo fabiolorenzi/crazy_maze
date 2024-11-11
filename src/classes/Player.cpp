@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 _b, Uint8 _a, int _parentWidth, int _parentHeight)
+Player::Player(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 _b, Uint8 _a, int _parentWidth, int _parentHeight, AudioManager* _audioManager)
 {
     x = _x;
     y = _y;
@@ -20,6 +20,12 @@ Player::Player(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint
     movableBottom = true;
     hasToAddTime = false;
     isPlayerMovable = true;
+    audioManager = _audioManager;
+}
+
+Player::~Player()
+{
+    delete audioManager;
 }
 
 void Player::Move(int moveIndex, Maze& maze)
@@ -211,16 +217,19 @@ bool Player::CheckBulletCollisions(Bullet* bullet)
 
 void Player::PlayerHit()
 {
+    audioManager->PlaySound(SoundType::HIT);
     life -= 1;
 }
 
 bool Player::PlayerCatch(CatchableObject& obj)
 {
     if (obj.objectType == ObjectType::LifeObject && life < 4) {
+        audioManager->PlaySound(SoundType::CATCH_LIFE);
         life += 1;
         return true;
     } else if (obj.objectType == ObjectType::TimeObject) {
         hasToAddTime = true;
+        audioManager->PlaySound(SoundType::CATCH_TIME);
         return true;
     }
 

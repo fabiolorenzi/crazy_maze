@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <iostream>
+#include "AudioManager.h"
 #include "EndGameUI.h"
 #include "Maze.h"
 #include "Player.h"
@@ -9,6 +10,7 @@
 #include "GameUI.h"
 #include "../enums/LevelNumber.h"
 #include "../enums/EndGameResults.h"
+#include "../enums/SoundTypes.h"
 #include "../functions/LevelElementsManager.h"
 
 class Level
@@ -20,7 +22,7 @@ class Level
         int remainingTime;
         bool hasPlayerWon;
 
-        Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber levelNumber, int parentWidth, int parentHeight);
+        Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber levelNumber, int parentWidth, int parentHeight, AudioManager* _audioManager);
         ~Level();
         void RenderLevel(EndGameResult result);
         Player& GetPlayer();
@@ -34,6 +36,7 @@ class Level
         Uint32 startTime;
         float currentSecond;
         bool isLevelFinished;
+        AudioManager* audioManager;
         Maze* maze;
         Player* player;
         GameUI* gameUI;

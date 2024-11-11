@@ -1,6 +1,6 @@
 #include "Level.h"
 
-Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber levelNumber, int parentWidth, int parentHeight)
+Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber levelNumber, int parentWidth, int parentHeight, AudioManager* _audioManager)
 {
 	parentRenderer = pRenderer;
 	parentScreenSurface = pScreenSurface;
@@ -11,6 +11,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 	isLevelFinished = false;
 	hasPlayerWon = false;
     SetBackground(levelNumber);
+	audioManager = _audioManager;
 
 	if (levelNumber == LevelNumber::Menu) {
 		player = nullptr;
@@ -19,12 +20,14 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
 		time = startTime;
 	} else {
 		maze = new Maze(levelNumber, width, height);
-		player = new Player((width / 2) - 20, (height / 2) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF, width, height);
+		player = new Player((width / 2) - 20, (height / 2) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF, width, height, audioManager);
 		startTime = SDL_GetTicks();
 		time = startTime;
 		remainingTime = SetLevelInitialTimer(levelNumber);
 		gameUI = new GameUI(1000, 20, 250, 20, player->life, remainingTime);
 	}
+
+	audioManager->PlayBackgroundMusic();
 }
 
 Level::~Level()
@@ -32,6 +35,7 @@ Level::~Level()
 	delete player;
 	delete maze;
 	delete gameUI;
+	delete audioManager;
 	if (endGameUI) delete endGameUI;
 }
 
@@ -157,4 +161,9 @@ void Level::EndGame(EndGameResult result)
 	isLevelFinished = true;
 	player->BlockPlayer();
 	endGameUI = new EndGameUI(0, 0, width, height, result);
+	if (result == EndGameResult::Victory) {
+		audioManager->PlaySound(SoundType::VICTORY);
+	} else {
+		audioManager->PlaySound(SoundType::LOST);
+	}
 }

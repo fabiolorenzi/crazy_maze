@@ -59,7 +59,7 @@ EndGameUI& Window::GetEndGameUIFromLevel()
 
 void Window::SetLevel(LevelNumber newLevel)
 {
-	level = new Level(gScreenSurface, gRenderer, newLevel, width, height);
+	level = new Level(gScreenSurface, gRenderer, newLevel, width, height, audioManager);
 }
 
 int Window::Init()
@@ -91,7 +91,7 @@ int Window::Init()
 		} else {
 			gScreenSurface = SDL_GetWindowSurface(gWindow);
 			gRenderer = new Renderer(gWindow);
-			level = new Level(gScreenSurface, gRenderer, LevelNumber::LevelOne, width, height);
+			level = new Level(gScreenSurface, gRenderer, LevelNumber::LevelOne, width, height, audioManager);
 		}
 	}
 	return 0;

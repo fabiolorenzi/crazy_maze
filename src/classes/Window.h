@@ -1,8 +1,10 @@
 #pragma once
 
 #include <SDL.h>
+#include <SDL_mixer.h>
 #include <stdio.h>
 #include <iostream>
+#include "AudioManager.h"
 #include "EndGameUI.h"
 #include "Level.h"
 #include "Maze.h"
@@ -31,6 +33,7 @@ class Window
         int height;
         SDL_Window* gWindow;
         SDL_Surface* gStretched;
+        AudioManager* audioManager;
         Level* level;
 
         int Init();

@@ -17,6 +17,7 @@ Window::~Window()
 	gWindow = NULL;
 	delete level;
 	delete gRenderer;
+	delete audioManager;
 	SDL_Quit();
 }
 
@@ -62,13 +63,11 @@ void Window::SetLevel(LevelNumber newLevel)
 
 int Window::Init()
 {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
 	{
 		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 		return -1;
-	}
-	else
-	{
+	} else {
 		gWindow = SDL_CreateWindow(
             "CrazyMaze",
             SDL_WINDOWPOS_CENTERED,
@@ -77,6 +76,13 @@ int Window::Init()
             height,
             SDL_WINDOW_SHOWN
         );
+
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+			printf("SDL_Mixer could not initialize! SDL_mixer Error: $s\n", Mix_GetError());
+			return -1;
+		} else {
+			audioManager = new AudioManager();
+		}
 
 		if (gWindow == NULL) {
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());

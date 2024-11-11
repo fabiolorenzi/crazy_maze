@@ -40,12 +40,10 @@ LevelNumber Button::OnClick()
 
 LevelNumber Button::MenuButtonFunction()
 {
-    std::cout << "menu button" << std::endl;
     return LevelNumber::Menu;
 }
 
 LevelNumber Button::RestartButtonFunction()
 {
-    std::cout << "restart button" << std::endl;
     return LevelNumber::LevelOne;
 }

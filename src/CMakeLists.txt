@@ -6,6 +6,7 @@ add_executable(CrazyMaze)
 target_sources(${PROJECT_NAME}
     PRIVATE
         main.cpp
+        classes/AudioManager.cpp
         classes/Bullet.cpp
         classes/Button.cpp
         classes/CatchableObject.cpp

@@ -18,19 +18,25 @@ AudioManager::~AudioManager()
     delete hit;
     delete lost;
     delete victory;
+    Mix_FreeChunk(catch_life);
+    Mix_FreeChunk(catch_time);
+    Mix_FreeChunk(hit);
+    Mix_FreeChunk(lost);
+    Mix_FreeChunk(victory);
+    Mix_FreeMusic(background_music);
 }
 
-void AudioManager::LoadMusic(std::string songPath, SDL_Music*& target)
+void AudioManager::LoadMusic(std::string songPath, Mix_Music*& target)
 {
-    target = Mix_LoadMUS(songPath);
+    target = Mix_LoadMUS(songPath.c_str());
     if (target == NULL) {
         printf("Failed to load the track! SDL_mixer Error: &s\n", Mix_GetError());
     }
 }
 
-void AudioManager::LoadSound(std::string soundPath, SDL_Chunk*& target)
+void AudioManager::LoadSound(std::string soundPath, Mix_Chunk*& target)
 {
-    target = Mix_LoadWAV(songPath);
+    target = Mix_LoadWAV(soundPath.c_str());
     if (target == NULL) {
         printf("Failed to load the track! SDL_mixer Error: &s\n", Mix_GetError());
     }

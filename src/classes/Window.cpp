@@ -18,6 +18,7 @@ Window::~Window()
 	delete level;
 	delete gRenderer;
 	delete audioManager;
+	Mix_Quit();
 	SDL_Quit();
 }
 

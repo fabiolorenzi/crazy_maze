@@ -16,6 +16,6 @@ class AudioManager
         Mix_Chunk* lost;
         Mix_Chunk* victory;
 
-        void LoadMusic(std::string songPath, SDL_Music*& target);
-        void LoadSound(std::string soundPath, SDL_Chunk*& target);
+        void LoadMusic(std::string songPath, Mix_Music*& target);
+        void LoadSound(std::string soundPath, Mix_Chunk*& target);
 };

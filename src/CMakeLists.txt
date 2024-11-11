@@ -37,6 +37,7 @@ target_link_libraries(${PROJECT_NAME}
         ${OPENGL_gl_LIBRARY}
         ${CMAKE_DL_LIBS}
         SDL2_image
+        SDL2_mixer
         SDL2_ttf
         IMGUI
         glew

@@ -59,6 +59,11 @@ Maze& Window::GetMazeFromLevel()
 	return level->GetMaze();
 }
 
+MenuUI& Window::GetMenuUIFromLevel()
+{
+	return level->GetMenuUI();
+}
+
 EndGameUI& Window::GetEndGameUIFromLevel()
 {
 	return level->GetEndGameUI();

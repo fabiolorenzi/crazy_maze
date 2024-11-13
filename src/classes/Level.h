@@ -28,6 +28,7 @@ class Level
         void RenderLevel(EndGameResult result);
         Player& GetPlayer();
         Maze& GetMaze();
+        MenuUI& GetMenuUI();
         GameUI& GetGameUI();
         EndGameUI& GetEndGameUI();
         void UpdateTime();

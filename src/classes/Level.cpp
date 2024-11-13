@@ -67,6 +67,11 @@ Maze& Level::GetMaze()
 	return *maze;
 }
 
+MenuUI& Level::GetMenuUI()
+{
+	return *menuUI;
+}
+
 GameUI& Level::GetGameUI()
 {
 	return *gameUI;

@@ -11,8 +11,14 @@ void LoopEvent(bool& isRunning, Window*& window, EndGameResult result)
         } else if (e.type == SDL_KEYUP) {
             window->GetPlayerFromLevel().Move(0, window->GetMazeFromLevel());
         } else if (e.type == SDL_MOUSEBUTTONUP) {
+            std::cout << "clicked" << std::endl;
             if (result != EndGameResult::Waiting) {
                 LevelNumber newLevel = window->GetEndGameUIFromLevel().CheckIfButtonsAreClicked(e.button.x, e.button.y);
+                if (newLevel != LevelNumber::None) {
+                    window->SetLevel(newLevel);
+                }
+            } else if (window->GetLevel().levelNumber == LevelNumber::Menu || window->GetLevel().levelNumber == LevelNumber::LevelsMenu) {
+                LevelNumber newLevel = window->GetMenuUIFromLevel().CheckIfButtonsAreClicked(e.button.x, e.button.y);
                 if (newLevel != LevelNumber::None) {
                     window->SetLevel(newLevel);
                 }

@@ -28,10 +28,13 @@ LevelNumber Button::OnClick()
     LevelNumber newLevel = LevelNumber::None;
     switch (type) {
         case ButtonType::MENU_BUTTON:
-            newLevel = MenuButtonFunction();
+            newLevel = LevelNumber::Menu;
+            break;
+        case ButtonType::LEVELS_MENU_BUTTON:
+            newLevel = LevelNumber::LevelsMenu;
             break;
         case ButtonType::RESTART_BUTTON:
-            newLevel = RestartButtonFunction();
+            newLevel = LevelNumber::LevelOne;
             break;
         case ButtonType::LEVEL_ONE_BUTTON:
             newLevel = LevelNumber::LevelOne;
@@ -42,17 +45,10 @@ LevelNumber Button::OnClick()
         case ButtonType::LEVEL_THREE_BUTTON:
             newLevel = LevelNumber::LevelThree;
             break;
+        case ButtonType::QUIT_BUTTON:
+            std::cout << "quit" << std::endl;
+            break;
     }
 
     return newLevel;
-}
-
-LevelNumber Button::MenuButtonFunction()
-{
-    return LevelNumber::Menu;
-}
-
-LevelNumber Button::RestartButtonFunction()
-{
-    return LevelNumber::LevelOne;
 }

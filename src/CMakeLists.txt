@@ -15,6 +15,7 @@ target_sources(${PROJECT_NAME}
         classes/GameUI.cpp
         classes/Level.cpp
         classes/Maze.cpp
+        classes/MenuUI.cpp
         classes/Player.cpp
         classes/Renderer.cpp
         classes/Timer.cpp

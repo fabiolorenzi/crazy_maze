@@ -24,15 +24,22 @@ Window::~Window()
 
 void Window::RenderElements()
 {
-	UpdateRemainingTime();
-	gameResult = level->CheckIfGameFinished(gameResult);
-	level->GetGameUI().UpdateLife(level->GetPlayer().life);
+	if (level->levelNumber != LevelNumber::Menu && level->levelNumber != LevelNumber::LevelsMenu) {
+		UpdateRemainingTime();
+		gameResult = level->CheckIfGameFinished(gameResult);
+		level->GetGameUI().UpdateLife(level->GetPlayer().life);
+	} else {
+		gameResult = EndGameResult::Waiting;
+	}
 
 	gRenderer->Reset();
 
 	SDL_RenderCopy(gRenderer->renderer, level->background, NULL, NULL);
 	level->RenderLevel(gameResult);
-	level->UpdateTime();
+
+	if (level->levelNumber != LevelNumber::Menu && level->levelNumber != LevelNumber::LevelsMenu) {
+		level->UpdateTime();
+	}
 
 	SDL_RenderPresent(gRenderer->renderer);
 }
@@ -91,7 +98,7 @@ int Window::Init()
 		} else {
 			gScreenSurface = SDL_GetWindowSurface(gWindow);
 			gRenderer = new Renderer(gWindow);
-			level = new Level(gScreenSurface, gRenderer, LevelNumber::LevelOne, width, height, audioManager);
+			level = new Level(gScreenSurface, gRenderer, LevelNumber::Menu, width, height, audioManager);
 		}
 	}
 	return 0;

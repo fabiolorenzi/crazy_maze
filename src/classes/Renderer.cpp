@@ -20,6 +20,7 @@ Renderer::Renderer(SDL_Window* window)
         LoadFont(timeFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 24);
         LoadFont(endGameFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 48);
         LoadFont(buttonFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 32);
+        LoadFont(menuFont, "assets/fonts/Jersey_10_Charted/Jersey10Charted-Regular.ttf", 48);
         if (!(IMG_Init(imgFlags) && imgFlags)) {
             printf("SDL_Image could not initialize! SDL_Error: %s\n", SDL_GetError());
         }
@@ -42,6 +43,9 @@ Renderer::~Renderer()
     delete buttonFont;
     delete buttonTextTexture;
     delete buttonTextSurface;
+    delete menuFont;
+    delete menuTextTexture;
+    delete menuTextSurface;
     IMG_Quit();
     TTF_Quit();
 }
@@ -153,6 +157,34 @@ void Renderer::Draw(EndGameUI* endGameUI, int width, int height)
 
     Draw(endGameUI->restartButton, width, height);
     Draw(endGameUI->menuButton, width, height);
+}
+
+void Renderer::Draw(MenuUI* menuUI, int width, int height)
+{
+    menuTextSurface = TTF_RenderText_Blended(menuFont, "Crazy Maze", {255, 0, 0, 255});
+    if (menuTextSurface == NULL) {
+        printf("menuTextSurface creation failed. TTF_Error: %s\n", TTF_GetError());
+    }
+
+    menuTextTexture = SDL_CreateTextureFromSurface(renderer, menuTextSurface);
+    if (menuTextTexture == NULL) {
+        printf("menuTextTexture creation failed. SDL_Error: %s\n", SDL_GetError());
+    }
+
+    SDL_Rect menuTextDrawing = {width / 2 - 100, height / 2 - 160, 200, 48};
+    SDL_RenderCopy(renderer, menuTextTexture, NULL, &menuTextDrawing);
+    SDL_DestroyTexture(menuTextTexture);
+    SDL_FreeSurface(menuTextSurface);
+
+    if (menuUI->levelNumber == LevelNumber::Menu) {
+        Draw(menuUI->playButton, width, height);
+        Draw(menuUI->quitButton, width, height);
+    } else if (menuUI->levelNumber == LevelNumber::LevelsMenu) {
+        Draw(menuUI->backButton, width, height);
+        Draw(menuUI->levelOneButton, width, height);
+        Draw(menuUI->levelTwoButton, width, height);
+        Draw(menuUI->levelThreeButton, width, height);
+    }
 }
 
 void Renderer::Draw(Button* button, int width, int height)

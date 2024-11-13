@@ -33,6 +33,15 @@ LevelNumber Button::OnClick()
         case ButtonType::RESTART_BUTTON:
             newLevel = RestartButtonFunction();
             break;
+        case ButtonType::LEVEL_ONE_BUTTON:
+            newLevel = LevelNumber::LevelOne;
+            break;
+        case ButtonType::LEVEL_TWO_BUTTON:
+            newLevel = LevelNumber::LevelTwo;
+            break;
+        case ButtonType::LEVEL_THREE_BUTTON:
+            newLevel = LevelNumber::LevelThree;
+            break;
     }
 
     return newLevel;

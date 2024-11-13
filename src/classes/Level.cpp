@@ -1,10 +1,10 @@
 #include "Level.h"
 
-Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber levelNumber, int parentWidth, int parentHeight, AudioManager* _audioManager)
+Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber _levelNumber, int parentWidth, int parentHeight, AudioManager* _audioManager)
 {
 	parentRenderer = pRenderer;
 	parentScreenSurface = pScreenSurface;
-	levelNumber = levelNumber;
+	levelNumber = _levelNumber;
 	width = parentWidth;
 	height = parentHeight;
 	currentSecond = 0.f;
@@ -13,11 +13,12 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber level
     SetBackground(levelNumber);
 	audioManager = _audioManager;
 
-	if (levelNumber == LevelNumber::Menu) {
+	if (levelNumber == LevelNumber::Menu || levelNumber ==  LevelNumber::LevelsMenu) {
 		player = nullptr;
 		gameUI = nullptr;
 		startTime = SDL_GetTicks();
 		time = startTime;
+		menuUI = new MenuUI(0, 0, width, height, levelNumber);
 	} else {
 		maze = new Maze(levelNumber, width, height);
 		player = new Player((width / 2) - 20, (height / 2) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF, width, height, audioManager);
@@ -37,17 +38,20 @@ Level::~Level()
 	delete gameUI;
 	delete audioManager;
 	if (endGameUI) delete endGameUI;
+	if (menuUI) delete menuUI;
 }
 
 void Level::RenderLevel(EndGameResult result)
 {
-	if (!isLevelFinished) {
+	if (!isLevelFinished && levelNumber != LevelNumber::Menu && levelNumber != LevelNumber::LevelsMenu) {
 		parentRenderer->Draw(maze->walls);
 		parentRenderer->Draw(maze->enemies);
 		parentRenderer->Draw(maze->objects);
 		parentRenderer->ManageBullets(maze->enemies, *player, *gameUI);
 		parentRenderer->Draw(player);
 		parentRenderer->Draw(gameUI, width, height);
+	} else if (levelNumber == LevelNumber::Menu || levelNumber == LevelNumber::LevelsMenu) {
+		parentRenderer->Draw(menuUI, width, height);
 	} else {
 		parentRenderer->Draw(endGameUI, width, height);
 	}
@@ -75,13 +79,15 @@ EndGameUI& Level::GetEndGameUI()
 
 void Level::UpdateTime()
 {
-	time = SDL_GetTicks() - startTime;
+	if (levelNumber != LevelNumber::Menu) {
+		time = SDL_GetTicks() - startTime;
 
-	if ((time / 1000) >= currentSecond) {
-		currentSecond += 1.f;
-		remainingTime -= 1;
-		gameUI->UpdateTime(remainingTime);
-		maze->TriggerEnemies((int)(time / 1000));
+		if ((time / 1000) >= currentSecond) {
+			currentSecond += 1.f;
+			remainingTime -= 1;
+			gameUI->UpdateTime(remainingTime);
+			maze->TriggerEnemies((int)(time / 1000));
+		}
 	}
 }
 

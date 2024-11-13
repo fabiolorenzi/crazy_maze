@@ -21,8 +21,8 @@ MenuUI::MenuUI(int _x, int _y, int _width, int _height, LevelNumber _levelNumber
         quitButton = nullptr;
         backButton = new Button(width / 2 - 100, height / 2, width / 2 - 100, height / 2, 200, 40, {255, 255, 255, 255}, {33, 33, 33, 255}, "Back", ButtonType::MENU_BUTTON);
         levelOneButton = new Button(width / 2 - 100, height / 2 + 80, width / 2 - 100, height / 2 + 80, 200, 40, {255, 255, 255, 255}, {33, 33, 33, 255}, "Lv 1", ButtonType::LEVEL_ONE_BUTTON);
-        levelTwoButton = new Button(width / 2 - 100, height / 2 + 160, width / 2 - 100, height / 2 + 80, 200, 40, {255, 255, 255, 255}, {33, 33, 33, 255}, "Lv 2", ButtonType::LEVEL_TWO_BUTTON);
-        levelThreeButton = new Button(width / 2 - 100, height / 2 + 240, width / 2 - 100, height / 2 + 80, 200, 40, {255, 255, 255, 255}, {33, 33, 33, 255}, "Lv 3", ButtonType::LEVEL_THREE_BUTTON);
+        levelTwoButton = new Button(width / 2 - 100, height / 2 + 160, width / 2 - 100, height / 2 + 160, 200, 40, {255, 255, 255, 255}, {33, 33, 33, 255}, "Lv 2", ButtonType::LEVEL_TWO_BUTTON);
+        levelThreeButton = new Button(width / 2 - 100, height / 2 + 240, width / 2 - 100, height / 2 + 240, 200, 40, {255, 255, 255, 255}, {33, 33, 33, 255}, "Lv 3", ButtonType::LEVEL_THREE_BUTTON);
     }
 }
 

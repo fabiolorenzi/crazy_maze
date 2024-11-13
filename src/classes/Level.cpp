@@ -16,6 +16,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber _leve
 	if (levelNumber == LevelNumber::Menu || levelNumber ==  LevelNumber::LevelsMenu) {
 		player = nullptr;
 		gameUI = nullptr;
+		maze = nullptr;
 		startTime = SDL_GetTicks();
 		time = startTime;
 		menuUI = new MenuUI(0, 0, width, height, levelNumber);
@@ -33,12 +34,12 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber _leve
 
 Level::~Level()
 {
-	delete player;
-	delete maze;
-	delete gameUI;
+	if (player != nullptr) delete player;
+	if (maze != nullptr) delete maze;
+	if (gameUI != nullptr) delete gameUI;
 	delete audioManager;
-	if (endGameUI) delete endGameUI;
-	if (menuUI) delete menuUI;
+	if (endGameUI != nullptr) delete endGameUI;
+	if (menuUI != nullptr) delete menuUI;
 }
 
 void Level::RenderLevel(EndGameResult result)
@@ -119,6 +120,9 @@ void Level::SetBackground(LevelNumber level)
 {
 	switch (level) {
 		case Menu:
+			background = LoadBackground("assets/backgrounds/background_menu.png");
+			break;
+		case LevelsMenu:
 			background = LoadBackground("assets/backgrounds/background_menu.png");
 			break;
 		case LevelOne:

@@ -5,6 +5,7 @@ Window::Window()
     width = 1280;
     height = 720;
 	gameResult = EndGameResult::Waiting;
+	quit = false;
 
     Init();
 }

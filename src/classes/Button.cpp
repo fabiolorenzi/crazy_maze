@@ -46,7 +46,7 @@ LevelNumber Button::OnClick()
             newLevel = LevelNumber::LevelThree;
             break;
         case ButtonType::QUIT_BUTTON:
-            std::cout << "quit" << std::endl;
+            newLevel = LevelNumber::Quit;
             break;
     }
 

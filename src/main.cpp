@@ -19,6 +19,10 @@ int main()
 
         window->RenderElements();
         timer->BalanceFPS();
+        
+        if (window->quit) {
+            isRunning = false;
+        }
     }   
     
     delete window;

@@ -6,5 +6,6 @@ enum LevelNumber {
     LevelsMenu,
     LevelOne,
     LevelTwo,
-    LevelThree
+    LevelThree,
+    Quit
 };

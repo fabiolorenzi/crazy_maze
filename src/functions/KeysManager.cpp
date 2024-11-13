@@ -18,7 +18,9 @@ void LoopEvent(bool& isRunning, Window*& window, EndGameResult result)
                 }
             } else if (window->GetLevel().levelNumber == LevelNumber::Menu || window->GetLevel().levelNumber == LevelNumber::LevelsMenu) {
                 LevelNumber newLevel = window->GetMenuUIFromLevel().CheckIfButtonsAreClicked(e.button.x, e.button.y);
-                if (newLevel != LevelNumber::None) {
+                if (newLevel == LevelNumber::Quit) {
+                    window->quit = true;
+                } else if (newLevel != LevelNumber::None) {
                     window->SetLevel(newLevel);
                 }
             }

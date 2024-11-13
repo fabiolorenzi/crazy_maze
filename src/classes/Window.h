@@ -20,6 +20,7 @@ class Window
         SDL_Surface* gScreenSurface;
         Renderer* gRenderer;
         EndGameResult gameResult;
+        bool quit;
         
         Window();
         ~Window();

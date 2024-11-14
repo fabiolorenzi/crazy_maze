@@ -25,14 +25,14 @@ class Renderer
         void Reset();
         void Draw(int x, int y, int width, int height, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
         void Draw(Player* player);
-        void Draw(Wall* walls[4]);
-        void Draw(Enemy* enemies[2]);
-        void Draw(CatchableObject* objects[3]);
+        void Draw(Wall* walls[50]);
+        void Draw(Enemy* enemies[10]);
+        void Draw(CatchableObject* objects[5]);
         void Draw(GameUI* gameUI, int width, int height);
         void Draw(EndGameUI* endGameUI, int width, int height);
         void Draw(MenuUI* menuUI, int width, int height);
         void Draw(Button* button, int width, int height);
-        void ManageBullets(Enemy* enemies[2], Player& player, GameUI& gameUI);
+        void ManageBullets(Enemy* enemies[10], Player& player, GameUI& gameUI);
         int LoadFont(TTF_Font*& font, const char* fontPath, int fontSize);
     private:
         SDL_Surface* timeTextSurface;

@@ -74,7 +74,7 @@ void Player::CheckMazeCollisions(Maze& maze, bool isVerticalMove, int movement)
     int pd_x = x;
     int pd_y = y + height;
 
-    for (int x {}; x < 100; ++x) {
+    for (int x {}; x < 50; ++x) {
         if (maze.walls[x] != nullptr) {
             int wa_x = maze.walls[x]->x;
             int wa_y = maze.walls[x]->y;
@@ -87,7 +87,7 @@ void Player::CheckMazeCollisions(Maze& maze, bool isVerticalMove, int movement)
 
             CheckMoveCollision(isVerticalMove, movement, pa_x, pa_y, pb_x, pb_y, pc_x, pc_y, pd_x, pd_y, wa_x, wa_y, wb_x, wb_y, wc_x, wc_y, wd_x, wd_y);
         } else {
-            x = 100;
+            x = 50;
         }
     }
 }
@@ -103,7 +103,7 @@ void Player::CheckObjectCollisions(Maze& maze, bool isVerticalMove, int movement
     int pd_x = x;
     int pd_y = y + height;
 
-    for (int x {}; x < 10; ++x) {
+    for (int x {}; x < 5; ++x) {
         if (maze.objects[x] != nullptr) {
             int oa_x = maze.objects[x]->x;
             int oa_y = maze.objects[x]->y;
@@ -121,7 +121,7 @@ void Player::CheckObjectCollisions(Maze& maze, bool isVerticalMove, int movement
                 };
             }
         } else {
-            x = 10;
+            x = 5;
         }
     }
 }

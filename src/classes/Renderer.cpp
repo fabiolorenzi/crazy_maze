@@ -72,9 +72,9 @@ void Renderer::Draw(Player* player)
     SDL_RenderDrawRect(renderer, &drawing);
 }
 
-void Renderer::Draw(Wall* walls[4])
+void Renderer::Draw(Wall* walls[50])
 {
-    for (int x {}; x < 4; ++x) {
+    for (int x {}; x < 50; ++x) {
         SDL_Rect drawing = {walls[x]->x, walls[x]->y, walls[x]->width, walls[x]->height};
         SDL_SetRenderDrawColor(renderer, walls[x]->r, walls[x]->g, walls[x]->b, walls[x]->a);
         SDL_RenderFillRect(renderer, &drawing);
@@ -83,9 +83,9 @@ void Renderer::Draw(Wall* walls[4])
     }
 }
 
-void Renderer::Draw(Enemy* enemies[2])
+void Renderer::Draw(Enemy* enemies[10])
 {
-    for (int x {}; x < 2; ++x) {
+    for (int x {}; x < 10; ++x) {
         SDL_Rect drawing = {enemies[x]->x, enemies[x]->y, enemies[x]->width, enemies[x]->height};
         SDL_SetRenderDrawColor(renderer, enemies[x]->r, enemies[x]->g, enemies[x]->b, enemies[x]->a);
         SDL_RenderFillRect(renderer, &drawing);
@@ -94,9 +94,9 @@ void Renderer::Draw(Enemy* enemies[2])
     }
 }
 
-void Renderer::Draw(CatchableObject* objects[3])
+void Renderer::Draw(CatchableObject* objects[5])
 {
-    for (int x {}; x < 3; ++x) {
+    for (int x {}; x < 5; ++x) {
         SDL_Rect drawing = {objects[x]->x, objects[x]->y, objects[x]->width, objects[x]->height};
         SDL_SetRenderDrawColor(renderer, objects[x]->r, objects[x]->g, objects[x]->b, objects[x]->a);
         SDL_RenderFillRect(renderer, &drawing);
@@ -211,9 +211,9 @@ void Renderer::Draw(Button* button, int width, int height)
     SDL_FreeSurface(buttonTextSurface);
 }
 
-void Renderer::ManageBullets(Enemy* enemies[2], Player& player, GameUI& gameUI)
+void Renderer::ManageBullets(Enemy* enemies[10], Player& player, GameUI& gameUI)
 {
-    for (int x {}; x < 2; ++x) {
+    for (int x {}; x < 10; ++x) {
         if (enemies[x]->bullet != nullptr) {
             if (enemies[x]->bullet->y >= -20 && enemies[x]->bullet->x >= -100 && (enemies[x]->bullet->hasHit || enemies[x]->bullet->x <= 1500)) {
                 enemies[x]->bullet->Move();

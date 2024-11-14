@@ -11,9 +11,9 @@
 class Maze
 {
     public:
-        Wall* walls[100] {nullptr};
-        Enemy* enemies[20] {nullptr};
-        CatchableObject* objects[10] {nullptr};
+        Wall* walls[50] {nullptr};
+        Enemy* enemies[10] {nullptr};
+        CatchableObject* objects[5] {nullptr};
 
         Maze(LevelNumber _levelNumber, int parentWidth, int parentHeight);
         ~Maze();

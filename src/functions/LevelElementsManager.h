@@ -7,6 +7,6 @@
 #include "../enums/LevelNumber.h"
 
 unsigned int SetLevelInitialTimer(LevelNumber levelNumber);
-void PopulateWallsInMazeArray(LevelNumber levelNumber, Wall* wallsArray[100], int width, int height);
-void PopulateEnemiesInMazeArray(LevelNumber levelNumber, Enemy* enemiesArray[20], int width, int height);
-void PopulateObjectsInMazeArray(LevelNumber levelNumber, CatchableObject* objectsArray[10], int width, int height);
+void PopulateWallsInMazeArray(LevelNumber levelNumber, Wall* wallsArray[50], int width, int height);
+void PopulateEnemiesInMazeArray(LevelNumber levelNumber, Enemy* enemiesArray[10], int width, int height);
+void PopulateObjectsInMazeArray(LevelNumber levelNumber, CatchableObject* objectsArray[5], int width, int height);

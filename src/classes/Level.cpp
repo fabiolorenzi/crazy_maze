@@ -22,7 +22,7 @@ Level::Level(SDL_Surface* pScreenSurface, Renderer* pRenderer, LevelNumber _leve
 		menuUI = new MenuUI(0, 0, width, height, levelNumber);
 	} else {
 		maze = new Maze(levelNumber, width, height);
-		player = new Player((width / 2) - 20, (height / 2) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF, width, height, audioManager);
+		player = new Player((width / 2) - 20, (height / 4) - 20, 40, 40, 0xFF, 0x00, 0x00, 0xFF, width, height, audioManager);
 		startTime = SDL_GetTicks();
 		time = startTime;
 		remainingTime = SetLevelInitialTimer(levelNumber);

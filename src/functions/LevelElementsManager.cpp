@@ -208,11 +208,11 @@ void PopulateEnemiesInMazeArray(LevelNumber levelNumber, Enemy* enemiesArray[10]
 void PopulateObjectsInMazeArray(LevelNumber levelNumber, CatchableObject* objectsArray[5], int width, int height)
 {
     if (levelNumber == LevelNumber::LevelOne) {
-        objectsArray[0] = new CatchableObject(-900, height - 150, 40, 40, ObjectType::LifeObject);
-        objectsArray[1] = new CatchableObject(-100, height - 150, 40, 40, ObjectType::TimeObject);
-        objectsArray[2] = new CatchableObject(-1100, height - 150, 40, 40, ObjectType::TimeObject);
-        objectsArray[3] = new CatchableObject(-1200, height - 150, 40, 40, ObjectType::TimeObject);
-        objectsArray[4] = new CatchableObject(-1900, height - 450, 40, 40, ObjectType::VictoryObject);
+        objectsArray[0] = new CatchableObject(3500, (height / 2) - 80, 40, 40, ObjectType::LifeObject);
+        objectsArray[1] = new CatchableObject(3960, 20, 40, 40, ObjectType::TimeObject);
+        objectsArray[2] = new CatchableObject(6260, (height / 4) - 75, 40, 40, ObjectType::TimeObject);
+        objectsArray[3] = new CatchableObject(4920, (height / 2) - 60, 40, 40, ObjectType::LifeObject);
+        objectsArray[4] = new CatchableObject(5715, (height / 2) + 10, 40, 40, ObjectType::VictoryObject);
     } else if (levelNumber == LevelNumber::LevelTwo) {
         objectsArray[0] = new CatchableObject(-900, height - 150, 40, 40, ObjectType::LifeObject);
         objectsArray[1] = new CatchableObject(-900, height - 150, 40, 40, ObjectType::TimeObject);

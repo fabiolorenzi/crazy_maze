@@ -170,16 +170,16 @@ void PopulateWallsInMazeArray(LevelNumber levelNumber, Wall* wallsArray[50], int
 void PopulateEnemiesInMazeArray(LevelNumber levelNumber, Enemy* enemiesArray[10], int width, int height)
 {
     if (levelNumber == LevelNumber::LevelOne) {
-        enemiesArray[0] = new Enemy(200, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 10);
-        enemiesArray[1] = new Enemy(300, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 1);
-        enemiesArray[2] = new Enemy(1000, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 2);
-        enemiesArray[3] = new Enemy(1100, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 6);
-        enemiesArray[4] = new Enemy(1200, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 3);
-        enemiesArray[5] = new Enemy(1200, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 10);
-        enemiesArray[6] = new Enemy(1300, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 1);
-        enemiesArray[7] = new Enemy(1400, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 2);
-        enemiesArray[8] = new Enemy(1500, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 6);
-        enemiesArray[9] = new Enemy(1600, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 3);
+        enemiesArray[0] = new Enemy(2460, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 5);
+        enemiesArray[1] = new Enemy(2880, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 5);
+        enemiesArray[2] = new Enemy(3880, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 7);
+        enemiesArray[3] = new Enemy(4170, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 3);
+        enemiesArray[4] = new Enemy(4955, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 5);
+        enemiesArray[5] = new Enemy(5715, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 3);
+        enemiesArray[6] = new Enemy(5920, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 10);
+        enemiesArray[7] = new Enemy(6040, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 10);
+        enemiesArray[8] = new Enemy(6160, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 10);
+        enemiesArray[9] = new Enemy(6420, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 10);
     } else if (levelNumber == LevelNumber::LevelTwo) {
         enemiesArray[0] = new Enemy(-900, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 10);
         enemiesArray[1] = new Enemy(-900, height - 50, 40, 40, 0x00, 0x00, 0xFF, 0xFF, width, height, 5);

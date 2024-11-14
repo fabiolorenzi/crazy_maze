@@ -104,7 +104,7 @@ int Window::Init()
 		} else {
 			gScreenSurface = SDL_GetWindowSurface(gWindow);
 			gRenderer = new Renderer(gWindow);
-			level = new Level(gScreenSurface, gRenderer, LevelNumber::Menu, width, height, audioManager);
+			level = new Level(gScreenSurface, gRenderer, LevelNumber::LevelOne, width, height, audioManager);
 		}
 	}
 	return 0;
@@ -113,7 +113,7 @@ int Window::Init()
 void Window::UpdateRemainingTime()
 {
 	if (level->GetPlayer().hasToAddTime) {
-		level->remainingTime += 30;
+		level->remainingTime += 60;
 		level->GetPlayer().hasToAddTime = false;
 	}
 }

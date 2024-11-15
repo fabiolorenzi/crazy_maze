@@ -104,7 +104,7 @@ int Window::Init()
 		} else {
 			gScreenSurface = SDL_GetWindowSurface(gWindow);
 			gRenderer = new Renderer(gWindow);
-			level = new Level(gScreenSurface, gRenderer, LevelNumber::LevelOne, width, height, audioManager);
+			level = new Level(gScreenSurface, gRenderer, LevelNumber::Menu, width, height, audioManager);
 		}
 	}
 	return 0;

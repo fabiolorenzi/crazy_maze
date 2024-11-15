@@ -7,7 +7,7 @@ unsigned int SetLevelInitialTimer(LevelNumber levelNumber)
     } else if (levelNumber == LevelNumber::LevelTwo) {
         return 120;
     } else if (levelNumber == LevelNumber::LevelThree) {
-        return 999;
+        return 120;
     }
     
     return 0;

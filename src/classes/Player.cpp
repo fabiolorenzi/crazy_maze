@@ -14,6 +14,7 @@ Player::Player(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint
     parentWidth = _parentWidth;
     parentHeight = _parentHeight;
     speed = 5;
+    moveIndex = 0;
     movableLeft = true;
     movableTop = true;
     movableRight = true;
@@ -29,9 +30,14 @@ Player::~Player()
     delete audioManager;
 }
 
-void Player::Move(int moveIndex, Maze& maze)
+void Player::UpdateMoveIndex(int _moveIndex)
 {
-    if (isPlayerMovable) {
+    moveIndex = _moveIndex;
+}
+
+void Player::Move(Maze& maze)
+{
+    if (isPlayerMovable && moveIndex != 0) {
         if (moveIndex == 1 && y - speed > 0) {
             CheckMazeCollisions(maze, true, -speed);
             CheckObjectCollisions(maze, true, -speed);

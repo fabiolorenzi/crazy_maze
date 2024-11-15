@@ -7,9 +7,9 @@ void LoopEvent(bool& isRunning, Window*& window, EndGameResult result)
         if (e.type == SDL_QUIT) {
             isRunning = false;
         } else if (e.type == SDL_KEYDOWN) {
-            window->GetPlayerFromLevel().Move(KeyDownManager(e), window->GetMazeFromLevel());
+            window->GetPlayerFromLevel().UpdateMoveIndex(KeyDownManager(e));
         } else if (e.type == SDL_KEYUP) {
-            window->GetPlayerFromLevel().Move(0, window->GetMazeFromLevel());
+            window->GetPlayerFromLevel().UpdateMoveIndex(0);
         } else if (e.type == SDL_MOUSEBUTTONUP) {
             if (result != EndGameResult::Waiting) {
                 LevelNumber newLevel = window->GetEndGameUIFromLevel().CheckIfButtonsAreClicked(e.button.x, e.button.y);

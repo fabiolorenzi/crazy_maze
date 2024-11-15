@@ -17,12 +17,14 @@ class Player
         Uint8 r, b, g, a;
         SDL_Rect body;
         int life;
+        int moveIndex;
         bool hasToAddTime;
         bool hasPlayerWon;
 
         Player(int _x, int _y, int _width, int _height, Uint8 _r, Uint8 _g, Uint8 _b, Uint8 _a, int _parentWidth, int _parentHeight, AudioManager* _audioManager);
         ~Player();
-        void Move(int moveIndex, Maze& maze);
+        void UpdateMoveIndex(int _moveIndex);
+        void Move(Maze& maze);
         void CheckMazeCollisions(Maze& maze, bool isVerticalMove, int movement);
         bool CheckBulletCollisions(Bullet* bullet);
         void CheckObjectCollisions(Maze& maze, bool isVerticalMove, int movement);

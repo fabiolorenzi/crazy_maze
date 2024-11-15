@@ -45,6 +45,7 @@ Level::~Level()
 void Level::RenderLevel(EndGameResult result)
 {
 	if (!isLevelFinished && levelNumber != LevelNumber::Menu && levelNumber != LevelNumber::LevelsMenu) {
+		player->Move(*maze);
 		parentRenderer->Draw(maze->walls);
 		parentRenderer->Draw(maze->enemies);
 		parentRenderer->Draw(maze->objects);

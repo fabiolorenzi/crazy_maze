@@ -118,65 +118,56 @@ void PopulateWallsInMazeArray(LevelNumber levelNumber, Wall* wallsArray[50], int
         wallsArray[48] = new Wall(4220, 160, 10, (height / 2) - 160, 0x80, 0x80, 0x80, 0x00);
         wallsArray[49] = new Wall(4260, 240, 10, (height / 2) - 240, 0x80, 0x80, 0x80, 0x00);
     } else if (levelNumber == LevelNumber::LevelThree) {
-        wallsArray[0] = new Wall(0, (height / 2) - 10, width * 5, 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[1] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[2] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[3] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[4] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-
-        wallsArray[5] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[6] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[7] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[8] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[9] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-
-        wallsArray[10] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[11] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[12] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[13] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[14] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-
-        wallsArray[15] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[16] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[17] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[18] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[19] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-
-        wallsArray[20] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[21] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[22] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[23] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[24] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-
-        wallsArray[25] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[26] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[27] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[28] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[29] = new Wall(-900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-
-        wallsArray[30] = new Wall(-1800, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[31] = new Wall(-2000, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[32] = new Wall(-2200, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[33] = new Wall(-2400, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[34] = new Wall(-2600, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-
-        wallsArray[35] = new Wall(-2800, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[36] = new Wall(-3000, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[37] = new Wall(-3200, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[38] = new Wall(1000, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[39] = new Wall(1200, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-
-        wallsArray[40] = new Wall(1300, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[41] = new Wall(1400, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[42] = new Wall(1500, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[43] = new Wall(1600, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[44] = new Wall(1700, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-
-        wallsArray[45] = new Wall(1800, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[46] = new Wall(1900, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[47] = new Wall(2000, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[48] = new Wall(2100, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
-        wallsArray[49] = new Wall(2200, 0, 10, height - 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[0] = new Wall(0, (height / 2) - 10, width * 3, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[1] = new Wall(500, (height / 2) - 80, 10, 80, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[2] = new Wall(500, (height / 2) - 80, 400, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[3] = new Wall(900, (height / 2) - 160, 10, 90, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[4] = new Wall(980, (height / 2) - 240, 10, 240, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[5] = new Wall(500, (height / 2) - 160, 400, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[6] = new Wall(580, (height / 2) - 240, 400, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[7] = new Wall(500, 0, 10, 210, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[8] = new Wall(1060, 0, 10, (height / 2) - 80, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[9] = new Wall(1060, (height / 2) - 80, 400, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[10] = new Wall(1460, 0, 10, (height / 2) - 70, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[11] = new Wall(1540, 80, 10, (height / 2) - 80, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[12] = new Wall(1620, 0, 10, (height / 2) - 80, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[13] = new Wall(1700, 80, 10, (height / 2) - 80, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[14] = new Wall(1780, 0, 10, (height / 2) - 80, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[15] = new Wall(1780, (height / 2) - 80, 500, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[16] = new Wall(1860, (height / 2) - 160, 420, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[17] = new Wall(1780, (height / 2) - 240, 500, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[18] = new Wall(2380, (height / 2) - 300, 10, (height / 2) - 70, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[19] = new Wall(1860, (height / 2) - 300, 530, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[20] = new Wall(2440, 0, 10, (height / 2) - 60, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[21] = new Wall(2500, 0, 10, (height / 2) - 60, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[22] = new Wall(2560, 40, 10, (height / 2) - 50, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[23] = new Wall(2620, 0, 10, (height / 2) - 60, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[24] = new Wall(2620, (height / 2) - 60, 400, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[25] = new Wall(2680, 0, 10, (height / 2) - 100, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[26] = new Wall(2740, 0, 10, (height / 2) - 100, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[27] = new Wall(2800, 0, 10, (height / 2) - 100, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[28] = new Wall(2860, 0, 10, (height / 2) - 100, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[29] = new Wall(2920, 0, 10, (height / 2) - 100, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[30] = new Wall(3080, 0, 10, (height / 2) - 60, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[31] = new Wall(3080, (height / 2) - 60, 500, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[32] = new Wall(2980, 0, 10, (height / 2) - 100, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[33] = new Wall(3640, 50, 10, (height / 2) - 50, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[34] = new Wall(3700, 50, 10, (height / 2) - 100, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[35] = new Wall(3340, (height / 2) - 110, 300, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[36] = new Wall(3280, (height / 2) - 160, 300, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[37] = new Wall(3340, (height / 2) - 210, 300, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[38] = new Wall(3280, (height / 2) - 260, 300, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[39] = new Wall(3280, 100, 10, (height / 2) - 150, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[40] = new Wall(3230, 60, 10, (height / 2) - 160, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[41] = new Wall(3180, 100, 10, (height / 2) - 160, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[42] = new Wall(3130, 50, 10, (height / 2) - 160, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[43] = new Wall(3700, (height / 2) - 60, 140, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[44] = new Wall(3130, 50, 580, 10, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[45] = new Wall(400, 0, 10, (height / 2) - 50, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[46] = new Wall(300, 50, 10, (height / 2) - 50, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[47] = new Wall(200, 0, 10, (height / 2) - 50, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[48] = new Wall(0, 50, 10, (height / 2) - 50, 0x80, 0x80, 0x80, 0x00);
+        wallsArray[49] = new Wall(-100, 0, 10, height, 0x80, 0x80, 0x80, 0x00);
     }
 }
 

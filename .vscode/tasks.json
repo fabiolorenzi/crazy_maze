@@ -18,7 +18,7 @@
 		{
 			"type": "shell",
 			"label": "Build Release",
-			"command": "cmake --build build --config Release",
+			"command": "cmake --build build --config Release; cp -r assets build/bin/Release",
 			"group": "build",
 			"detail": "CMake release build"
 		},
